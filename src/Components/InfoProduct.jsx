@@ -33,7 +33,7 @@ function InfoProduct() {
         <h1>Loading...</h1>
       ) : (
         <>
-          <div className="grid grid-cols-2 p-14">
+          <div className="grid grid-cols-1 p-14 w-full sm:grid-cols-1 md:grid-cols-1 sm:justify-items-center md:justify-items-center min-[1280px]:grid-cols-2">
             {products ? (
               <>
                 <div>
@@ -53,7 +53,7 @@ function InfoProduct() {
                     <h1 className="font-normal text-2xl py-2">
                       {products.title}
                     </h1>
-                    <p className="font-light text-xl py-2">
+                    <p className="font-light text-base py-2 sm:text-xl">
                       {products.description}
                     </p>
                   </div>
@@ -76,7 +76,7 @@ function InfoProduct() {
                     </Link>
                     <h1 className="pt-8 pb-5 text-4xl">S/.{products.price}</h1>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between flex-col sm:flex-row gap-5 sm:gap-0">
                     <div className="flex gap-5">
                       <h1 className="font-medium text-gray-800">Cantidad:</h1>
                       <div className="flex items-center">
@@ -94,7 +94,7 @@ function InfoProduct() {
                         </button>
                       </div>
                     </div>
-                    <div>
+                    <div className="flex items-center justify-center ">
                       <button
                         className="p-3 w-32 bg-orange-600 rounded-full text-white flex items-center gap-2 justify-center font-medium"
                         style={{ backgroundColor: "#0400C3" }}
@@ -110,6 +110,7 @@ function InfoProduct() {
             )}
           </div>
           <Catgorys />
+
         </>
       )}
     </>

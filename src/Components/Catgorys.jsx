@@ -4,17 +4,24 @@ import { useShopify } from "../context/ShopifyContext";
 import { Link } from "react-router-dom";
 
 function Catgorys() {
-    const {  categories, loading } =
-    useShopify();
+  const { categories, loading, getCat, setLoading } = useShopify();
 
-    const itemsPerPage = 6;
-    let longitud = categories.length > 6 ? 6 : categories.length;
-    const pageCount = Math.ceil(longitud / itemsPerPage);
-    const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 6;
+  let longitud = categories.length > 6 ? 6 : categories.length;
+  const pageCount = Math.ceil(longitud / itemsPerPage);
+  const [currentPage, setCurrentPage] = useState(0);
 
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
   };
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      await getCat();
+      setLoading(false);
+    };
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -50,7 +57,7 @@ function Catgorys() {
           ) : (
             slicedCategories.map((categoria) => (
               <Link to={`/productos/?c=${categoria.id}`} key={categoria.id}>
-                <div className="flex items-center flex-row-reverse gap-5 group border border-slate-100 hover:bg-neutral-200 hover:shadow-lg hover:border-transparent p-5 rounded-md">
+                <div className="flex items-center  flex-col-reverse  sm:flex-row-reverse gap-5 group border text-center  sm:text-left border-slate-100 hover:bg-neutral-200 hover:shadow-lg hover:border-transparent p-5 rounded-md">
                   <div className="w-40">
                     <h1>{categoria.name}</h1>
                   </div>

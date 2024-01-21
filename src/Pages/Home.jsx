@@ -14,13 +14,7 @@ function Home() {
       setLoading(false);
     };
 
-    const fetchCategories = async () => {
-      await getCat();
-      setLoading(false);
-    };
-
     fetchData();
-    fetchCategories();
   }, []);
 
   const isValidImageUrl = (imageUrl) => {
@@ -40,7 +34,7 @@ function Home() {
           Array.isArray(products) &&
           products.slice(0, 9).map((product) => (
             <Link key={product.id} to={`/productos/${product.id}`}>
-              <div className="flex items-center flex-row-reverse gap-5 group border border-slate-100 hover:bg-neutral-200 hover:shadow-lg hover:border-transparent p-4 rounded-md">
+              <div className="flex items-center flex-col-reverse  sm:flex-row-reverse  gap-5 group border border-slate-100 hover:bg-neutral-200 hover:shadow-lg hover:border-transparent p-4 rounded-md">
                 <div className="w-40">
                   <p className="text-xs text-neutral-500">
                     {product.category && <small>{product.category.name}</small>}
@@ -71,6 +65,7 @@ function Home() {
         )}
       </div>
       <Catgorys />
+
     </>
   );
 }
