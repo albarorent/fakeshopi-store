@@ -54,7 +54,7 @@ function Products() {
         ) : loading ? (
           <h1>Loading...</h1>
         ) : (
-          products.slice(0,12).map((product) => (
+          Array.isArray(products) && products.slice(0,16).map((product) => (
             <Link key={product.id} to={`/productos/${product.id}`}>
               <Product
                 id={product.id}

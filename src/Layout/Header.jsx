@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { getTitleProduct, joinFilterProduct } from "../api/products";
 import { useShopify } from "../context/ShopifyContext";
 import { TbShoppingCart } from "react-icons/tb";
@@ -8,13 +8,20 @@ import { MdSearch } from "react-icons/md";
 function Header() {
   const { setProducts } = useShopify();
   const location = useLocation();
+  const { id } = useParams();
   const params = new URLSearchParams(location.search);
   const categoryId = params.get("c");
+
+  const navigate = useNavigate();
 
   const handleChange = async (e) => {
     if (categoryId) {
       const res = await joinFilterProduct(e.target.value, "", "", categoryId);
       setProducts(res.data);
+    } else if (id) {
+      const res = await getTitleProduct(e.target.value);
+      setProducts(res.data);
+      navigate("/productos");
     } else {
       const res = await getTitleProduct(e.target.value);
       setProducts(res.data);
@@ -22,7 +29,7 @@ function Header() {
   };
 
   return (
-    <div style={{backgroundColor:"#0400C3"}}>
+    <div style={{ backgroundColor: "#0400C3" }}>
       <div className="flex justify-between px-14">
         <div className="pt-2">
           <Link to="/">
@@ -56,13 +63,13 @@ function Header() {
         </div>
         <div className="flex gap-12">
           <button>
-            <span className="text-2xl">
+            <span className="text-2xl text-white">
               {" "}
               <TbShoppingCart />
             </span>
           </button>
           <button>
-            <span className="text-2xl">
+            <span className="text-2xl text-white">
               <CiRepeat />
             </span>
           </button>
