@@ -6,13 +6,11 @@ import ReactPaginate from "react-paginate";
 function Home() {
   const { products, categories, getProductos, loading, setLoading, getCat } =
     useShopify();
+ 
   const itemsPerPage = 6;
-  const pageCount = Math.ceil(12 / itemsPerPage);
+  let longitud = categories.length > 6 ? 6 : categories.length;
+  const pageCount = Math.ceil(longitud / itemsPerPage);
   const [currentPage, setCurrentPage] = useState(0);
-
-  const handlePageChange = ({ selected }) => {
-    setCurrentPage(selected);
-  };
 
   useEffect(() => {
     setLoading(true);
@@ -31,9 +29,12 @@ function Home() {
     fetchCategories();
   }, []);
 
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      // Cambiar automáticamente a la siguiente página después de 5 segundos
       setCurrentPage((prevPage) => (prevPage + 1) % pageCount);
     }, 5000);
     return () => clearTimeout(timer);
@@ -42,7 +43,6 @@ function Home() {
   if (products.length === 0) {
     return <h1>Loading...</h1>;
   }
-
   const isValidImageUrl = (imageUrl) => {
     return imageUrl && imageUrl.startsWith("http");
   };
@@ -51,6 +51,7 @@ function Home() {
     currentPage * itemsPerPage,
     (currentPage + 1) * itemsPerPage
   );
+
   return (
     <>
       <div className="pt-5 border-b border-slate-300">
@@ -59,15 +60,15 @@ function Home() {
         </h3>
       </div>
       <div className="grid sm:grid-cols-1 md:grid-cols-2 min-[1280px]:grid-cols-3 gap-3 justify-items-center py-5 ">
-        {loading ? (
+        {loading && products.length === 0 ? (
           <h1>Loading...</h1>
-        ) : (
-          products.slice(0, 9).map((product) => (
+        ) : (products && 
+          products.slice(0,9).map((product) => (
             <Link key={product.id} to={`/productos/${product.id}`}>
               <div className="flex items-center flex-row-reverse gap-5 group border border-slate-100 hover:bg-neutral-200 hover:shadow-lg hover:border-transparent p-4 rounded-md">
                 <div className="w-40">
                   <p className="text-xs text-neutral-500">
-                    {product.category.name}
+                  {products.category && <small>{products.category.name}</small>}
                   </p>
                   <h1 className="text-base text-blue-600 font-bold">
                     {product.title}
