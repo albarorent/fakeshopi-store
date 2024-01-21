@@ -62,8 +62,8 @@ function Home() {
       <div className="grid sm:grid-cols-1 md:grid-cols-2 min-[1280px]:grid-cols-3 gap-3 justify-items-center py-5 ">
         {loading && products.length === 0 ? (
           <h1>Loading...</h1>
-        ) : (products && 
-          products.slice(0,9).map((product) => (
+        ) : (
+          Array.isArray(products) && products.slice(0,9).map((product) => (
             <Link key={product.id} to={`/productos/${product.id}`}>
               <div className="flex items-center flex-row-reverse gap-5 group border border-slate-100 hover:bg-neutral-200 hover:shadow-lg hover:border-transparent p-4 rounded-md">
                 <div className="w-40">
