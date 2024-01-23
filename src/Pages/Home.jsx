@@ -3,9 +3,10 @@ import { useShopify } from "../context/ShopifyContext";
 import { useEffect } from "react";
 import Catgorys from "../Components/Catgorys";
 import { TbShoppingCart } from "react-icons/tb";
+import { getProduct } from "../api/products";
 
 function Home() {
-  const { products, getProductos, loading, setLoading,car,setCar } =
+  const { products, getProductos, loading, setLoading, car, setCar } =
     useShopify();
 
   useEffect(() => {
@@ -23,20 +24,19 @@ function Home() {
     return imageUrl && imageUrl.startsWith("http");
   };
 
-  const handleOnclick = () => {
-    // if (products) {
-    //   const numberOfTimesToAddProduct = 1;
-    //   setCar([...car, ...Array(numberOfTimesToAddProduct).fill(products)]);
-    // } else {
-    //   console.error("Error: products no es un objeto válido");
-    // }
+  const handleOnclick = async (productId) => {
+    try {
+      const product = await getProduct(productId);
+      setCar((prevCar) => {
+        const updatedCar = [...prevCar, ...Array(1).fill(product.data)];
+        localStorage.setItem("car", JSON.stringify(updatedCar));
+        return updatedCar;
+      });
+    } catch (error) {
+      console.error("Error fetching product:", error);
+    }
   };
 
-  const HandleClick = () =>{
-    console.log("clik")
-  }
-
-  console.log(car);
   return (
     <>
       <div className="pt-5 border-b border-slate-300">
@@ -50,39 +50,56 @@ function Home() {
         ) : (
           Array.isArray(products) &&
           products.slice(0, 9).map((product) => (
-            // <Link key={product.id} to={`/productos/${product.id}`}>
-              <div className="flex items-center flex-col-reverse  sm:flex-row-reverse  gap-5 group border border-slate-100 hover:bg-neutral-200 hover:shadow-lg hover:border-transparent p-4 rounded-md" key={product.id} onClick={HandleClick}>
-                <div className="w-40">
-                  <p className="text-xs text-neutral-500">
+            <div
+              key={product.id}
+              className="flex items-center flex-col-reverse  sm:flex-row-reverse  gap-5 group border border-slate-100 hover:bg-neutral-200 hover:shadow-lg hover:border-transparent p-4 rounded-md"
+            >
+              <div className="w-40">
+                <p className="text-xs text-neutral-500">
+                  <Link to={`/productos/${product.id}`}>
                     {product.category && <small>{product.category.name}</small>}
-                  </p>
-                  <h1 className="text-base text-blue-600 font-bold">
-                    {product.title.length > 20 ? `${product.title.slice(0, 20)}...` : product.title}
-                  </h1>
-                  <div className="flex justify-between pr-4">
-                    <h2 className="text-lg text-gray-700 font-medium">
+                  </Link>
+                </p>
+                <h1 className="text-base text-blue-600 font-bold">
+                  <Link to={`/productos/${product.id}`}>
+                    {product.title.length > 20
+                      ? `${product.title.slice(0, 20)}...`
+                      : product.title}
+                  </Link>
+                </h1>
+                <div className="flex justify-between pr-4">
+                  <h2 className="text-lg text-gray-700 font-medium">
+                    <Link to={`/productos/${product.id}`}>
                       S/.{product.price}
-                    </h2>
-                    <button onClick={handleOnclick} className="rounded-full p-2 text-white" style={{backgroundColor:"#0400C3"}}>
-                      <TbShoppingCart className="text-xl" />
-                    </button>
-                  </div>
+                    </Link>
+                  </h2>
+                  <button
+                    onClick={() => handleOnclick(product.id)}
+                    className="rounded-full p-2 text-white"
+                    style={{ backgroundColor: "#0400C3" }}
+                  >
+                    <TbShoppingCart className="text-xl" />
+                  </button>
                 </div>
-                {isValidImageUrl(product.images[0]) ? (
+              </div>
+              {isValidImageUrl(product.images[0]) ? (
+                <Link to={`/productos/${product.id}`}>
                   <img
                     className="w-52"
                     src={product.images[0]}
                     alt={product.title}
                   />
-                ) : (
+                </Link>
+              ) : (
+                <Link to={`/productos/${product.id}`}>
                   <img
                     className="w-52"
                     src="../../public/no-image.svg"
                     alt="No Image"
                   />
-                )}
-              </div>
-            // </Link>
+                </Link>
+              )}
+            </div>
           ))
         )}
       </div>
