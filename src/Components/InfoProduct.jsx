@@ -9,7 +9,16 @@ import { TbShoppingCart } from "react-icons/tb";
 import Catgorys from "./Catgorys";
 
 function InfoProduct() {
-  const { products, setProducts, loading, setLoading } = useShopify();
+  const {
+    products,
+    setProducts,
+    loading,
+    setLoading,
+    car,
+    setCar,
+    cantidad,
+    setCantidad,
+  } = useShopify();
   const { id } = useParams();
 
   useEffect(() => {
@@ -27,6 +36,31 @@ function InfoProduct() {
     };
     fetchProductId(id);
   }, [id]);
+
+  const sumClick = () => {
+    if (cantidad >= 1) {
+      setCantidad((prevCantidad) => prevCantidad + 1);
+    }
+  };
+
+  const resClick = () => {
+    if (cantidad > 1) {
+      setCantidad((prevCantidad) => prevCantidad - 1);
+    }
+  };
+
+  const handleOnclick = () => {
+    if (products) {
+      setCar((prevCar) => {
+        const updatedCar = [...prevCar, ...Array(cantidad).fill(products)];
+        localStorage.setItem("car", JSON.stringify(updatedCar));
+        return updatedCar;
+      });
+    } else {
+      console.error("Error: products no es un objeto válido");
+    }
+  };
+
   return (
     <>
       {loading && products === null ? (
@@ -41,6 +75,9 @@ function InfoProduct() {
                     className="w-[500px]"
                     src={products.images}
                     alt={products.title}
+                    onError={(e) => {
+                      e.target.src = "../../public/no-image.svg";
+                    }}
                   />
                 </div>
                 <div>
@@ -76,20 +113,26 @@ function InfoProduct() {
                     </Link>
                     <h1 className="pt-8 pb-5 text-4xl">S/.{products.price}</h1>
                   </div>
-                  <div className="flex justify-between flex-col sm:flex-row gap-5 sm:gap-0">
+                  <div className="flex flex-col sm:flex-row gap-5 sm:gap-8">
                     <div className="flex gap-5">
                       <h1 className="font-medium text-gray-800">Cantidad:</h1>
                       <div className="flex items-center">
-                        <button className="text-2xl text-white bg-slate-500 w-10 p-2 border rounded-l-2xl rounded-r-none">
+                        <button
+                          className="text-2xl text-white bg-slate-500 w-10 p-2 border rounded-l-2xl rounded-r-none"
+                          onClick={resClick}
+                        >
                           <RiSubtractFill />
                         </button>
                         <input
                           type="text"
-                          value="1"
+                          value={cantidad}
                           className="text-center p-2 w-12 bg-slate-100 border border-gray-200"
                           disabled
                         />
-                        <button className="text-2xl text-white bg-slate-500 w-10 p-2 border rounded-r-2xl rounded-l-none">
+                        <button
+                          className="text-2xl text-white bg-slate-500 w-10 p-2 border rounded-r-2xl rounded-l-none"
+                          onClick={sumClick}
+                        >
                           <IoMdAdd />
                         </button>
                       </div>
@@ -98,6 +141,7 @@ function InfoProduct() {
                       <button
                         className="p-3 w-32 bg-orange-600 rounded-full text-white flex items-center gap-2 justify-center font-medium"
                         style={{ backgroundColor: "#0400C3" }}
+                        onClick={handleOnclick}
                       >
                         <TbShoppingCart className="text-xl" /> Agregar
                       </button>
@@ -110,7 +154,6 @@ function InfoProduct() {
             )}
           </div>
           <Catgorys />
-
         </>
       )}
     </>

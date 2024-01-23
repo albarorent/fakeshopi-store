@@ -18,7 +18,7 @@ function Footer() {
           </div>
         </div>
         <div
-          className=" p-16 grid grid-cols-3 justify-items-center"
+          className=" p-16 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-0 justify-items-start sm:justify-items-center"
           style={{ backgroundColor: "#333e48" }}
         >
           <div>

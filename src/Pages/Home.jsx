@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import { useShopify } from "../context/ShopifyContext";
 import { useEffect } from "react";
 import Catgorys from "../Components/Catgorys";
+import { TbShoppingCart } from "react-icons/tb";
+
 function Home() {
-  const { products, categories, getProductos, loading, setLoading, getCat } =
+  const { products, getProductos, loading, setLoading,car,setCar } =
     useShopify();
 
   useEffect(() => {
@@ -20,6 +22,21 @@ function Home() {
   const isValidImageUrl = (imageUrl) => {
     return imageUrl && imageUrl.startsWith("http");
   };
+
+  const handleOnclick = () => {
+    // if (products) {
+    //   const numberOfTimesToAddProduct = 1;
+    //   setCar([...car, ...Array(numberOfTimesToAddProduct).fill(products)]);
+    // } else {
+    //   console.error("Error: products no es un objeto válido");
+    // }
+  };
+
+  const HandleClick = () =>{
+    console.log("clik")
+  }
+
+  console.log(car);
   return (
     <>
       <div className="pt-5 border-b border-slate-300">
@@ -33,18 +50,23 @@ function Home() {
         ) : (
           Array.isArray(products) &&
           products.slice(0, 9).map((product) => (
-            <Link key={product.id} to={`/productos/${product.id}`}>
-              <div className="flex items-center flex-col-reverse  sm:flex-row-reverse  gap-5 group border border-slate-100 hover:bg-neutral-200 hover:shadow-lg hover:border-transparent p-4 rounded-md">
+            // <Link key={product.id} to={`/productos/${product.id}`}>
+              <div className="flex items-center flex-col-reverse  sm:flex-row-reverse  gap-5 group border border-slate-100 hover:bg-neutral-200 hover:shadow-lg hover:border-transparent p-4 rounded-md" key={product.id} onClick={HandleClick}>
                 <div className="w-40">
                   <p className="text-xs text-neutral-500">
                     {product.category && <small>{product.category.name}</small>}
                   </p>
                   <h1 className="text-base text-blue-600 font-bold">
-                    {product.title}
+                    {product.title.length > 20 ? `${product.title.slice(0, 20)}...` : product.title}
                   </h1>
-                  <h2 className="text-lg text-gray-700 font-medium">
-                    S/.{product.price}
-                  </h2>
+                  <div className="flex justify-between pr-4">
+                    <h2 className="text-lg text-gray-700 font-medium">
+                      S/.{product.price}
+                    </h2>
+                    <button onClick={handleOnclick} className="rounded-full p-2 text-white" style={{backgroundColor:"#0400C3"}}>
+                      <TbShoppingCart className="text-xl" />
+                    </button>
+                  </div>
                 </div>
                 {isValidImageUrl(product.images[0]) ? (
                   <img
@@ -60,12 +82,11 @@ function Home() {
                   />
                 )}
               </div>
-            </Link>
+            // </Link>
           ))
         )}
       </div>
       <Catgorys />
-
     </>
   );
 }
