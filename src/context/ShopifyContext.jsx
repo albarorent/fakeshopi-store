@@ -18,6 +18,7 @@ export function ShopifyProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [car,setCar] = useState([]);
   const [cantidad,setCantidad] = useState(1);
+  const [cantCar, setcantCar] = useState(0);
 
   const getProductos = async () => {
     const res = await getProducts();
@@ -43,7 +44,9 @@ export function ShopifyProvider({ children }) {
         car,
         setCar,
         cantidad,
-        setCantidad
+        setCantidad,
+        cantCar,
+        setcantCar
       }}
     >
       {children}

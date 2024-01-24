@@ -4,16 +4,23 @@ import { useShopify } from "../context/ShopifyContext";
 import { TbShoppingCart } from "react-icons/tb";
 import { CiRepeat } from "react-icons/ci";
 import { MdSearch } from "react-icons/md";
+import { useEffect, useState } from "react";
 
 function Header() {
-  const { setProducts } = useShopify();
+  const { setProducts,car, setCar,cantCar,setcantCar } = useShopify();
   const location = useLocation();
   const { id } = useParams();
   const params = new URLSearchParams(location.search);
   const categoryId = params.get("c");
-
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const storedCar = JSON.parse(localStorage.getItem("car")) || [];
+    setCar(storedCar);
+    let cantData =  storedCar.length;
+    setcantCar(cantData);
+  }, [])
+  
   const handleChange = async (e) => {
     if (categoryId) {
       const res = await joinFilterProduct(e.target.value, "", "", categoryId);
@@ -62,11 +69,12 @@ function Header() {
           </button>
         </div>
         <div className="flex gap-12">
-          <button>
+          <button className="flex items-end">
             <span className="text-2xl text-white">
               {" "}
               <TbShoppingCart />
             </span>
+            <small className="text-white bg-gray-800 rounded-full py-1 w-5 text-xs">{cantCar}</small>
           </button>
           <button>
             <span className="text-2xl text-white">

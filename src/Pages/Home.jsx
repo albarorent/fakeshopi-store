@@ -6,7 +6,7 @@ import { TbShoppingCart } from "react-icons/tb";
 import { getProduct } from "../api/products";
 
 function Home() {
-  const { products, getProductos, loading, setLoading, car, setCar } =
+  const { products, getProductos, loading, setLoading, car, setCar,setcantCar } =
     useShopify();
 
   useEffect(() => {
@@ -29,9 +29,11 @@ function Home() {
       const product = await getProduct(productId);
       setCar((prevCar) => {
         const updatedCar = [...prevCar, ...Array(1).fill(product.data)];
+        setcantCar(updatedCar.length);
         localStorage.setItem("car", JSON.stringify(updatedCar));
         return updatedCar;
       });
+     
     } catch (error) {
       console.error("Error fetching product:", error);
     }
