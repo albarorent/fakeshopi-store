@@ -18,6 +18,7 @@ function InfoProduct() {
     setCar,
     cantidad,
     setCantidad,
+    setcantCar
   } = useShopify();
   const { id } = useParams();
 
@@ -53,6 +54,16 @@ function InfoProduct() {
     if (products) {
       setCar((prevCar) => {
         const updatedCar = [...prevCar, ...Array(cantidad).fill(products)];
+        const uniqueIds = new Set();
+        const uniqueProducts = updatedCar.filter((product) => {
+          if (!uniqueIds.has(product.id)) {
+            uniqueIds.add(product.id);
+            return true;
+          }
+          return false;
+        });
+        const cantidadDeProductos = uniqueProducts.length;
+        setcantCar(cantidadDeProductos);
         localStorage.setItem("car", JSON.stringify(updatedCar));
         return updatedCar;
       });

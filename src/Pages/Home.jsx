@@ -6,8 +6,15 @@ import { TbShoppingCart } from "react-icons/tb";
 import { getProduct } from "../api/products";
 
 function Home() {
-  const { products, getProductos, loading, setLoading, car, setCar,setcantCar } =
-    useShopify();
+  const {
+    products,
+    getProductos,
+    loading,
+    setLoading,
+    car,
+    setCar,
+    setcantCar,
+  } = useShopify();
 
   useEffect(() => {
     setLoading(true);
@@ -29,11 +36,19 @@ function Home() {
       const product = await getProduct(productId);
       setCar((prevCar) => {
         const updatedCar = [...prevCar, ...Array(1).fill(product.data)];
-        setcantCar(updatedCar.length);
+        const uniqueIds = new Set();
+        const uniqueProducts = updatedCar.filter((product) => {
+          if (!uniqueIds.has(product.id)) {
+            uniqueIds.add(product.id);
+            return true;
+          }
+          return false;
+        });
+        const cantidadDeProductos = uniqueProducts.length;
+        setcantCar(cantidadDeProductos);
         localStorage.setItem("car", JSON.stringify(updatedCar));
         return updatedCar;
       });
-     
     } catch (error) {
       console.error("Error fetching product:", error);
     }
@@ -42,7 +57,7 @@ function Home() {
   return (
     <>
       <div className="pt-5 border-b border-slate-300">
-        <h3 className="text-xl font-normal border-b-2 border-orange-500 inline-block pb-2">
+        <h3 className="text-xl font-medium border-b-2 border-orange-500 inline-block pb-2">
           Novedades de la Tienda
         </h3>
       </div>

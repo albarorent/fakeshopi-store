@@ -41,7 +41,7 @@ function Catgorys() {
   return (
     <>
       <div className="pt-5 border-b border-slate-300">
-        <h3 className="text-xl font-normal border-b-2 border-orange-500 inline-block pb-2">
+        <h3 className="text-xl font-medium border-b-2 border-orange-500 inline-block pb-2">
           Categorias de la Tienda
         </h3>
       </div>

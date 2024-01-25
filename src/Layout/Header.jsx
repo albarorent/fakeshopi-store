@@ -7,7 +7,7 @@ import { MdSearch } from "react-icons/md";
 import { useEffect, useState } from "react";
 
 function Header() {
-  const { setProducts,car, setCar,cantCar,setcantCar } = useShopify();
+  const { setProducts, car, setCar, cantCar, setcantCar } = useShopify();
   const location = useLocation();
   const { id } = useParams();
   const params = new URLSearchParams(location.search);
@@ -17,10 +17,18 @@ function Header() {
   useEffect(() => {
     const storedCar = JSON.parse(localStorage.getItem("car")) || [];
     setCar(storedCar);
-    let cantData =  storedCar.length;
-    setcantCar(cantData);
-  }, [])
-  
+    const uniqueIds = new Set();
+    const uniqueProducts = storedCar.filter((product) => {
+      if (!uniqueIds.has(product.id)) {
+        uniqueIds.add(product.id);
+        return true;
+      }
+      return false;
+    });
+    const cantidadDeProductos = uniqueProducts.length;
+    setcantCar(cantidadDeProductos);
+  }, []);
+
   const handleChange = async (e) => {
     if (categoryId) {
       const res = await joinFilterProduct(e.target.value, "", "", categoryId);
@@ -34,10 +42,11 @@ function Header() {
       setProducts(res.data);
     }
   };
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
     <div style={{ backgroundColor: "#0400C3" }}>
-      <div className="flex justify-between px-14">
+      <div className="sm:flex justify-between px-14 hidden">
         <div className="pt-2">
           <Link to="/">
             <span className="text-slate-50 text-xs">
@@ -51,13 +60,13 @@ function Header() {
           </span>
         </div>
       </div>
-      <div className="flex items-center justify-between px-14 p-5">
+      <div className="flex items-center justify-between px-14 p-5 gap-4 sm:gap-0">
         <div>
           <Link to="/">
             <img className="w-48" src="../../public/shopify-app-store.png" />
           </Link>
         </div>
-        <div className="w-2/4 flex">
+        <div className="w-2/4 sm:flex hidden">
           <input
             className="w-full p-2 rounded-l-2xl rounded-r-none"
             type="search"
@@ -69,12 +78,16 @@ function Header() {
           </button>
         </div>
         <div className="flex gap-12">
-          <button className="flex items-end">
-            <span className="text-2xl text-white">
-              {" "}
-              <TbShoppingCart />
-            </span>
-            <small className="text-white bg-gray-800 rounded-full py-1 w-5 text-xs">{cantCar}</small>
+          <button>
+            <Link to="/carrito" className="flex items-end">
+              <span className="text-2xl text-white">
+                {" "}
+                <TbShoppingCart />
+              </span>
+              <small className="text-white bg-gray-800 rounded-full py-1 w-5 text-xs">
+                {cantCar}
+              </small>
+            </Link>
           </button>
           <button>
             <span className="text-2xl text-white">
@@ -84,6 +97,7 @@ function Header() {
         </div>
       </div>
     </div>
+   
   );
 }
 

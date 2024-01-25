@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { TbShoppingCart } from "react-icons/tb";
 
 function Product({ id, title, img, categorie, price }) {
   const isValidImageUrl = (imageUrl) => {
@@ -7,19 +9,30 @@ function Product({ id, title, img, categorie, price }) {
 
   return (
     <>
-      <div key={id} className="flex flex-col items-center">
-        <p>{categorie}</p>
-        <h1>{title}</h1>
+      <div key={id} className="flex flex-col gap-1">
+        <Link to={`/productos/${id}`}>
+          <p className="text-xs text-neutral-500">{categorie}</p>
+        </Link>
+        <Link to={`/productos/${id}`} className="text-base text-blue-600 font-bold">
+          {title.length > 20 ? `${title.slice(0, 20)}...` : title}
+        </Link>
         {isValidImageUrl(img) ? (
-          <img className="sm:w-24" src={img} alt={title} />
+          <Link to={`/productos/${id}`}>
+            <img className="sm:w-24 md:w-52 lg:w-52" src={img} alt={title} />
+          </Link>
         ) : (
-          <img
-            className="w-24 sm:w-24 md:w-52 lg:w-52"
-            src="../../public/no-image.svg"
-            alt="No Image"
-          />
+          <Link to={`/productos/${id}`}>
+            <img
+              className="w-24 sm:w-24 md:w-52 lg:w-52"
+              src="../../public/no-image.svg"
+              alt="No Image"
+            />
+          </Link>
         )}
-        <p>S/.{price}</p>
+        <div className="flex justify-between ">
+          <Link to={`/productos/${id}`} className="text-xl text-gray-700 font-medium"><p>S/{price}</p></Link>
+          <Link to={`/productos/${id}`} className="rounded-full text-white p-2" style={{ backgroundColor: "#0400C3" }}><TbShoppingCart/></Link>
+        </div>
       </div>
     </>
   );

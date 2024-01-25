@@ -6,6 +6,7 @@ import { ShopifyProvider } from "./context/ShopifyContext";
 import InfoProduct from "./Components/InfoProduct";
 import History from "./Pages/History";
 import NotFound from "./Pages/NotFound";
+import Carrito from "./Pages/Carrito";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
               <Route path="/historia/" element={<History />} />
               <Route path="/productos/" element={<Products />} />
               <Route path="/productos/:id" element={<InfoProduct />} />
+              <Route path="/carrito/" element={<Carrito />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
