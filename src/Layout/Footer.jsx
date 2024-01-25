@@ -8,7 +8,7 @@ function Footer() {
       <div>
         <div style={{ backgroundColor: "#0400C3" }}>
           <div className="flex px-16 gap-2">
-            <img src="../../public/arrow.png" className="w-20" alt="" />
+            <img src="/arrow.png" className="w-20" alt="" />
             <h2 className="text-white py-2 text-2xl">
               La mejor publicidad es la que hacen los clientes satisfechos{" "}
               <small>
