@@ -24,8 +24,8 @@ function Footer() {
           <div>
             <img
               className="w-48"
-              src="../../public/shopify-app-store.png"
-              alt=""
+              src="/shopify-app-store.png"
+              alt="arrow"
             />
             <p className="text-white pt-8 font-bold">Información de Contacto</p>
             <p className="text-white text-base">

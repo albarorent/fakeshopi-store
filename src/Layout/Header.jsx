@@ -77,7 +77,7 @@ function Header() {
             <MdSearch />
           </button>
         </div>
-        <div className="flex gap-12">
+        <div className="flex gap-6 sm:gap-12">
           <button>
             <Link to="/carrito" className="flex items-end">
               <span className="text-2xl text-white">
