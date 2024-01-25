@@ -63,7 +63,7 @@ function Header() {
       <div className="flex items-center justify-between px-14 p-5 gap-4 sm:gap-0">
         <div>
           <Link to="/">
-            <img className="w-48" src="/public/shopify-app-store.png" />
+            <img className="w-48" src="../../public/shopify-app-store.png" />
           </Link>
         </div>
         <div className="w-2/4 sm:flex hidden">
