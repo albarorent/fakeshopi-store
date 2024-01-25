@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 
 function Header() {
   const { setProducts, car, setCar, cantCar, setcantCar } = useShopify();
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
   const location = useLocation();
   const { id } = useParams();
   const params = new URLSearchParams(location.search);
@@ -29,6 +31,22 @@ function Header() {
     setcantCar(cantidadDeProductos);
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 640) {
+        setIsNavOpen(false);
+      }
+    };
+
+    // Agrega el evento de escucha al cambio de tamaño de la ventana
+    window.addEventListener('resize', handleResize);
+
+    // Limpia el evento al desmontar el componente
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const handleChange = async (e) => {
     if (categoryId) {
       const res = await joinFilterProduct(e.target.value, "", "", categoryId);
@@ -42,8 +60,6 @@ function Header() {
       setProducts(res.data);
     }
   };
-  const [isNavOpen, setIsNavOpen] = useState(false);
-
   return (
     <div style={{ backgroundColor: "#0400C3" }}>
       <div className="sm:flex justify-between px-14 hidden">
@@ -71,13 +87,19 @@ function Header() {
             className="w-full p-2 rounded-l-2xl rounded-r-none"
             type="search"
             onChange={handleChange}
-            placeholder="Search Products"
+            placeholder="Escriba aquí para hacer una busqueda"
           />
           <button className="text-white text-2xl bg-cyan-950 rounded-r-2xl w-10 flex items-center justify-center">
             <MdSearch />
           </button>
         </div>
-        <div className="flex gap-6 sm:gap-12">
+        <div className="flex gap-4 sm:gap-12">
+          <button
+            className="sm:hidden text-2xl text-white"
+            onClick={() => setIsNavOpen(isNavOpen ? false : true)}
+          >
+            <MdSearch />
+          </button>
           <button>
             <Link to="/carrito" className="flex items-end">
               <span className="text-2xl text-white">
@@ -95,9 +117,21 @@ function Header() {
             </span>
           </button>
         </div>
+        <div className={` ${isNavOpen ? "showMenuNav" : "hideMenuNav"}`}>
+          <div className="flex w-11/12 justify-center">
+            <input
+              className="w-10/12 p-2 border border-gray-600 rounded-l-2xl rounded-r-none"
+              type="search"
+              onChange={handleChange}
+              placeholder="Escriba aquí para hacer una busqueda"
+            />
+            <button className="text-white text-2xl bg-cyan-950 rounded-r-2xl w-10 flex items-center justify-center">
+              <MdSearch />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-   
   );
 }
 
