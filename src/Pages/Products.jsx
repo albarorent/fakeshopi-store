@@ -44,7 +44,7 @@ function Products() {
             </div>
           ))}
         </div>
-        <div className="px-3 flex flex-col gap-2 w-52">
+        <div className="px-3 hidden sm:flex flex-col gap-2 w-52">
           <h1>Filtrar por precio</h1>
           <input type="range" />
         </div>
