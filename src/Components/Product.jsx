@@ -24,7 +24,7 @@ function Product({ id, title, img, categorie, price }) {
           <Link to={`/productos/${id}`}>
             <img
               className="w-24 sm:w-24 md:w-52 lg:w-52"
-              src="../../public/no-image.svg"
+              src="/no-image.svg"
               alt="No Image"
             />
           </Link>
