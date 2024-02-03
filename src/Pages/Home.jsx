@@ -111,7 +111,7 @@ function Home() {
                 <Link to={`/productos/${product.id}`}>
                   <img
                     className="w-52"
-                    src="../../public/no-image.svg"
+                    src="/no-image.svg"
                     alt="No Image"
                   />
                 </Link>
