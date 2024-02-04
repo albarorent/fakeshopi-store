@@ -87,7 +87,7 @@ function InfoProduct() {
                     src={products.images}
                     alt={products.title}
                     onError={(e) => {
-                      e.target.src = "../../public/no-image.svg";
+                      e.target.src = "/no-image.svg";
                     }}
                   />
                 </div>
