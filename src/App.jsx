@@ -9,6 +9,7 @@ import NotFound from "./Pages/NotFound";
 import Carrito from "./Pages/Carrito";
 
 function App() {
+
   return (
     <>
       <ShopifyProvider>

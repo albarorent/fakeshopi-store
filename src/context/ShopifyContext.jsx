@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
+import { Select, initTE } from "tw-elements";
+
 import { getProducts } from "../api/products";
 import { getCategories } from "../api/categories";
 const ShopifyContext = createContext();
@@ -19,6 +21,7 @@ export function ShopifyProvider({ children }) {
   const [car,setCar] = useState([]);
   const [cantidad,setCantidad] = useState(1);
   const [cantCar, setcantCar] = useState(0);
+  initTE({ Select });
 
   const getProductos = async () => {
     const res = await getProducts();

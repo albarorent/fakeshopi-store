@@ -11,7 +11,6 @@ function Home() {
     getProductos,
     loading,
     setLoading,
-    car,
     setCar,
     setcantCar,
   } = useShopify();
