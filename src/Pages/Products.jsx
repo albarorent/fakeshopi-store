@@ -77,7 +77,7 @@ function Products() {
           search
         />
       </div>
-      <div className="w-4/5 sm:w-full md:w-full col-span-5 sm:col-span-5 md:col-span-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center sm:justify-items-center md:justify-items-center lg:justify-items-center  gap-2 py-5">
+      <div className="w-full sm:w-full md:w-full col-span-6 sm:col-span-5 md:col-span-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center sm:justify-items-center md:justify-items-center lg:justify-items-center  gap-2 py-5">
         {products.length === 0 ? (
           <h1>No se encuentran productos...</h1>
         ) : loading ? (

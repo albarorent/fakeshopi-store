@@ -18,7 +18,7 @@ function Product({ id, title, img, categorie, price }) {
         </Link>
         {isValidImageUrl(img) ? (
           <Link to={`/productos/${id}`}>
-            <img className="w-24 sm:w-24 md:w-40 lg:w-52" src={img} alt={title} />
+            <img className="w-full sm:w-24 md:w-40 lg:w-52" src={img} alt={title} />
           </Link>
         ) : (
           <Link to={`/productos/${id}`}>

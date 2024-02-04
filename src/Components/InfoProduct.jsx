@@ -78,7 +78,7 @@ function InfoProduct() {
         <h1>Loading...</h1>
       ) : (
         <>
-          <div className="grid grid-cols-1 p-14 w-full sm:grid-cols-1 md:grid-cols-1 sm:justify-items-center md:justify-items-center min-[1280px]:grid-cols-2">
+          <div className="grid grid-cols-1 py-8 w-full sm:grid-cols-1 md:grid-cols-1 sm:justify-items-center md:justify-items-center min-[1280px]:grid-cols-2">
             {products ? (
               <>
                 <div>
