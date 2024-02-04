@@ -29,9 +29,8 @@ function Products() {
   }, [categoryId]);
 
   return (
-    <div className="grid grid-cols-5  gap-5">
-      <div className="col-span-2 sm:col-span-1 flex flex-col gap-10 py-5">
-        <div className="sm:hidden">VIVA</div>
+    <div className="grid grid-cols-5  gap-5 justify-items-center">
+      <div className="w-full hidden sm:hidden md:flex lg:flex flex-col col-span-1  gap-10 py-5">
         <div className="hidden sm:flex flex-col gap-3 border border-slate-300">
           {categories.slice(0, 12).map((categorie) => (
             <div
@@ -44,12 +43,15 @@ function Products() {
             </div>
           ))}
         </div>
-        <div className="px-3 hidden sm:flex flex-col gap-2 w-52">
+        <div className="px-3 hidden sm:flex flex-col gap-2 w-full">
           <h1>Filtrar por precio</h1>
           <input type="range" />
         </div>
       </div>
-      <div className="w-[150px] sm:w-full col-span-4 grid grid-cols-4 justify-items-center sm:justify-items-center md:justify-items-center lg:justify-items-center  gap-2 py-5">
+      <div className="flex sm:flex md:hidden lg:hidden">
+            VIVA
+        </div>
+      <div className="w-4/5 sm:w-full md:w-full col-span-5 sm:col-span-5 md:col-span-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center sm:justify-items-center md:justify-items-center lg:justify-items-center  gap-2 py-5">
         {products.length === 0 ? (
           <h1>No se encuentran productos...</h1>
         ) : loading ? (
@@ -57,7 +59,7 @@ function Products() {
         ) : (
           Array.isArray(products) &&
           products.slice(0, 16).map((product) => (
-            <div key={product.id}>
+            <div className="w-[180px] " key={product.id}>
               <Product
                 id={product.id}
                 title={product.title}

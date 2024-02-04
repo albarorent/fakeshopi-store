@@ -14,16 +14,16 @@ function Product({ id, title, img, categorie, price }) {
           <p className="text-xs text-neutral-500">{categorie}</p>
         </Link>
         <Link to={`/productos/${id}`} className="text-base text-blue-600 font-bold">
-          {title.length > 20 ? `${title.slice(0, 20)}...` : title}
+          {title.length > 10 ? `${title.slice(0, 20)}...` : title}
         </Link>
         {isValidImageUrl(img) ? (
           <Link to={`/productos/${id}`}>
-            <img className="sm:w-24 md:w-52 lg:w-52" src={img} alt={title} />
+            <img className="w-24 sm:w-24 md:w-40 lg:w-52" src={img} alt={title} />
           </Link>
         ) : (
           <Link to={`/productos/${id}`}>
             <img
-              className="w-24 sm:w-24 md:w-52 lg:w-52"
+              className="w-24 sm:w-24 md:w-36 lg:w-52"
               src="/no-image.svg"
               alt="No Image"
             />
