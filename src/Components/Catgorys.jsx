@@ -67,13 +67,13 @@ function Catgorys() {
                       src={categoria.image}
                       alt={categoria.name}
                       onError={(e) => {
-                        e.target.src = "../../public/no-image.svg";
+                        e.target.src = "/no-image.svg";
                       }}
                     />
                   ) : (
                     <img
                       className="w-52"
-                      src="../../public/no-image.svg"
+                      src="/no-image.svg"
                       alt="No Image"
                     />
                   )}
