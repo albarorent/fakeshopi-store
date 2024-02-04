@@ -116,7 +116,7 @@ function InfoProduct() {
                       Comparte con tus amigos
                     </h1>
                     <Link
-                      to={`https://www.facebook.com/sharer/sharer.php?u=http://localhost:5173/productos/${products.id}`}
+                      to={`https://www.facebook.com/sharer/sharer.php?u=https://fake-shoppistore.netlify.app/productos/${products.id}`}
                       target="popup"
                       className="bg-blue-700 p-3 rounded-full text-white font-medium"
                     >
