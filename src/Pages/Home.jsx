@@ -72,20 +72,21 @@ function Home() {
             >
               <div className="w-40">
                 <p className="text-xs text-neutral-500">
-                  <Link to={`/productos/${product.id}`}>
+                  <Link to={`/productos/${product.id}`}  onClick={() => window.scrollTo(0, 0)}>
                     {product.category && <small>{product.category.name}</small>}
                   </Link>
                 </p>
                 <h1 className="text-base text-blue-600 font-bold">
-                  <Link to={`/productos/${product.id}`}>
+                  <Link to={`/productos/${product.id}`}  onClick={() => window.scrollTo(0, 0)}>
                     {product.title.length > 20
                       ? `${product.title.slice(0, 20)}...`
                       : product.title}
+                     
                   </Link>
                 </h1>
                 <div className="flex justify-between pr-4">
                   <h2 className="text-lg text-gray-700 font-medium">
-                    <Link to={`/productos/${product.id}`}>
+                    <Link to={`/productos/${product.id}`}  onClick={() => window.scrollTo(0, 0)}>
                       S/.{product.price}
                     </Link>
                   </h2>
@@ -99,7 +100,7 @@ function Home() {
                 </div>
               </div>
               {isValidImageUrl(product.images[0]) ? (
-                <Link to={`/productos/${product.id}`}>
+                <Link to={`/productos/${product.id}`}  onClick={() => window.scrollTo(0, 0)}>
                   <img
                     className="w-52"
                     src={product.images[0]}
@@ -107,7 +108,7 @@ function Home() {
                   />
                 </Link>
               ) : (
-                <Link to={`/productos/${product.id}`}>
+                <Link to={`/productos/${product.id}`}  onClick={() => window.scrollTo(0, 0)}>
                   <img
                     className="w-52"
                     src="/no-image.svg"

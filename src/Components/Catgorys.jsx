@@ -56,7 +56,11 @@ function Catgorys() {
             <h1>Cargando...</h1>
           ) : (
             slicedCategories.map((categoria) => (
-              <Link to={`/productos/?c=${categoria.id}`} key={categoria.id}>
+              <Link
+                to={`/productos/?c=${categoria.id}`}
+                key={categoria.id}
+                onClick={() => window.scrollTo(0, 0)}
+              >
                 <div className="flex items-center  flex-col-reverse  sm:flex-row-reverse gap-5 group border text-center  sm:text-left border-slate-100 hover:bg-neutral-200 hover:shadow-lg hover:border-transparent p-5 rounded-md">
                   <div className="w-40">
                     <h1>{categoria.name}</h1>
@@ -71,11 +75,7 @@ function Catgorys() {
                       }}
                     />
                   ) : (
-                    <img
-                      className="w-52"
-                      src="/no-image.svg"
-                      alt="No Image"
-                    />
+                    <img className="w-52" src="/no-image.svg" alt="No Image" />
                   )}
                 </div>
               </Link>
@@ -92,6 +92,8 @@ function Catgorys() {
             onPageChange={handlePageChange}
             containerClassName="pagination"
             activeClassName="active"
+            previousLabel={"Anterior"}
+            nextLabel={"Siguiente"}
           />
         </div>
       </div>

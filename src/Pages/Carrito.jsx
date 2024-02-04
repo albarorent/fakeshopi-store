@@ -70,19 +70,33 @@ function Carrito() {
                       S/.{cars.price}
                     </p>
                   </div>
-                  <div>
+                  <div className="flex gap-2">
                     <h1 className="text-lg text-gray-700 font-medium">
                       Cantidad:
                     </h1>
-                    <div className="flex">
-                      <button onClick={() => resClick(index)}>
-                        <RiSubtractFill />
+                    <div className="flex items-center justify-center">
+                      <button
+                        className="bg-slate-600 w-12 h-7 text-slate-50 rounded-l-xl"
+                        onClick={() => resClick(index)}
+                      >
+                        <RiSubtractFill className="text-center text-xl" />
                       </button>
-                      <input type="text" value={quantities[index]} disabled />
-                      <button onClick={() => sumClick(index)}>
-                        <IoMdAdd />
+                      <input
+                        type="text"
+                        className="w-14 h-7 border border-slate-600 text-center"
+                        value={quantities[index]}
+                        disabled
+                      />
+                      <button
+                        className="bg-slate-600 w-12 h-7 text-slate-50 rounded-r-xl"
+                        onClick={() => sumClick(index)}
+                      >
+                        <IoMdAdd className="text-center text-xl" />
                       </button>
                     </div>
+                  </div>
+                  <div className="flex items-center justify-center sm:justify-start pt-2">
+                    <button className="text-slate-50 w-20 bg-red-700 rounded-md">Quitar</button>
                   </div>
                 </div>
               </div>
@@ -91,6 +105,14 @@ function Carrito() {
         </div>
         <div>
           <h3>RESUMEN DE TU PEDIDO</h3>
+          <div>
+            <h1>Sub Total</h1>
+            <h2>Envío</h2>
+            <h3>TOTAL</h3>
+          </div>
+          <div>
+            <button>Comprar</button>
+          </div>
         </div>
       </div>
       <Catgorys />

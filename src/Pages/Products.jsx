@@ -15,9 +15,17 @@ function Products() {
   const categoryId = params.get("c");
   const [selectValue, setSelectValue] = useState(0);
 
+  const itemsPerPage = 16;
+  const [currentPage, setCurrentPage] = useState(1);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentProducts = Array.isArray(products) ? products.slice(startIndex, endIndex) : [];
+
+
   useEffect(() => {
     if (categoryId) {
       setLoading(true);
+      setCurrentPage(1);
       const getProductId = async () => {
         const res = await getCategoryProduct(categoryId);
         setProducts(res.data);
@@ -38,15 +46,20 @@ function Products() {
   }));
 
   const onHandlevalue = (event) => {
-    setSelectValue(event.value)
-    navigate("/productos/?c="+event.value)
+    setSelectValue(event.value);
+    setCurrentPage(1);
+    navigate("/productos/?c=" + event.value);
   };
-  
+
   useEffect(() => {
-    if(categoryId){
-      setSelectValue(parseInt(categoryId))
+    if (categoryId) {
+      setSelectValue(parseInt(categoryId));
     }
   }, []);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div className="grid grid-cols-5  gap-5 justify-items-center">
@@ -71,7 +84,9 @@ function Products() {
       <div className="flex sm:hidden col-span-6 pt-8">
         <TESelect
           value={selectValue}
-          onValueChange={((event)=>{onHandlevalue(event)})}
+          onValueChange={(event) => {
+            onHandlevalue(event);
+          }}
           data={teSelectData}
           label="Categorias"
           search
@@ -84,7 +99,7 @@ function Products() {
           <h1>Loading...</h1>
         ) : (
           Array.isArray(products) &&
-          products.slice(0, 16).map((product) => (
+          currentProducts.map((product) => (
             <div
               className="w-full sm:w-[180px] md:w-[180px] lg:w-full "
               key={product.id}
@@ -99,7 +114,22 @@ function Products() {
             </div>
           ))
         )}
+       
       </div>
+      <div className="pagination pb-5 col-span-6 flex gap-3 ">
+          {Array.from(
+            { length: Math.ceil(products.length / itemsPerPage) },
+            (_, index) => (
+              <button
+                key={index + 1}
+                onClick={() => handlePageChange(index + 1)}
+                className={index + 1 === currentPage ? "active border-b-2 border-blue-900 w-6" : ""}
+              >
+                {index + 1}
+              </button>
+            )
+          )}
+        </div>
     </div>
   );
 }
