@@ -7,6 +7,7 @@ import { IoMdAdd } from "react-icons/io";
 function Carrito() {
   const { setCar, car, setcantCar, cantCar } = useShopify();
   const [idCount, setIdCount] = useState({});
+  const [subtotal, setSubtotal] = useState(0);
 
   const uniqueIds = {};
   const uniqueIdsCant = {};
@@ -27,6 +28,7 @@ function Carrito() {
     }, {});
 
     setIdCount(updatedIdCount);
+    
   }, [setCar, setIdCount]);
 
   const uniqueCars = car.filter((car) => {
@@ -86,9 +88,6 @@ function Carrito() {
     // Filtrar el estado 'car' para obtener todos los productos excepto los que tengan el mismo ID
     const updatedCar = car.filter((item) => item.id !== productId);
 
-    // Obtener el conteo actual del producto
-    const currentCount = idCount[productId] || 0;
-
     // Actualizar el estado 'car'
     setCar(updatedCar);
 
@@ -111,6 +110,21 @@ function Carrito() {
     });
     setcantCar(uniqueCars.length);
   };
+
+  function CalcTotal() {
+    const total = car.reduce((acc, cars) => acc + cars.price, 0);
+    setSubtotal(total);
+  }
+
+  useEffect(() => {
+    if (car.length > 0) {
+      CalcTotal();
+    }
+  }, [car])
+  
+
+ 
+
   return (
     <>
       <div className="pt-5 border-b border-slate-300">
@@ -187,9 +201,9 @@ function Carrito() {
         <div>
           <h3>RESUMEN DE TU PEDIDO</h3>
           <div>
-            <h1>Sub Total</h1>
+            <h1>Sub Total: {subtotal}</h1>
             <h2>Envío</h2>
-            <h3>TOTAL</h3>
+            <h3>TOTAL:</h3>
           </div>
           <div>
             <button>Comprar</button>
