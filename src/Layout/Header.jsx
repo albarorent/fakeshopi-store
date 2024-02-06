@@ -98,11 +98,12 @@ function Header() {
         <div className="flex gap-4 sm:gap-12">
           <button
             className="sm:hidden text-2xl text-white"
+            aria-label="Buscar"
             onClick={() => setIsNavOpen(isNavOpen ? false : true)}
           >
             <MdSearch />
           </button>
-          <button>
+          <button aria-label="carrito">
             <Link to="/carrito" className="flex items-end">
               <span className="text-2xl text-white">
                 {" "}
@@ -113,7 +114,7 @@ function Header() {
               </small>
             </Link>
           </button>
-          <button>
+          <button aria-label="comparar">
             <span className="text-2xl text-white">
               <CiRepeat />
             </span>

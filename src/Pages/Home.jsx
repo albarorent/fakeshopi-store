@@ -88,6 +88,7 @@ function Home() {
                     onClick={() => handleOnclick(product.id)}
                     className="rounded-full p-2 text-white"
                     style={{ backgroundColor: "#0400C3" }}
+                    aria-label="carrito"
                   >
                     <TbShoppingCart className="text-xl" />
                   </button>
