@@ -130,7 +130,7 @@ function Carrito() {
         <div className="w-full">
           <div className="flex flex-col gap-3 ">
             {uniqueCars.length === 0 ? (
-              <p>No tiene productos en su carrito.</p>
+              <p className="text-3xl text-center pt-3 text-red-600">Tu carrito de compras esta vacío.</p>
             ) : (
               uniqueCars.map((cars) => (
                 <div
