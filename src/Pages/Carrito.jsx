@@ -193,7 +193,7 @@ function Carrito() {
             )}
           </div>
         </div>
-        <div className="w-1/2">
+        <div className="w-full sm:w-1/2">
           <div className="flex flex-col gap-3 border border-slate-300 p-4 rounded-md">
             <h3 className="text-xl font-medium">RESUMEN DE TU PEDIDO</h3>
             <h1 className="text-sm font-bold">Sub Total: <span className="text-black font-normal"> S/.{subtotal}</span> </h1>
