@@ -11,8 +11,8 @@ const isValidUrl = (url) => {
 
 const LazyImage = ({ src, alt, w = "w-52  h-52" }) => (
   <picture>
-    <source srcSet={isValidUrl(src) ? src : ""} type="image/webp" />
-    <source srcSet={isValidUrl(src) ? src : ""} type="image/jpg" />
+    <source srcSet={isValidUrl(src) ? src : "/no-image.svg"} type="image/webp" />
+    <source srcSet={isValidUrl(src) ? src : "/no-image.svg"} type="image/jpg" />
     <img
       className={`${w}`}
       src={isValidUrl(src) ? src : "/no-image.svg"}
