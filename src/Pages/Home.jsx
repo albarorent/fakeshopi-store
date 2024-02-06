@@ -95,19 +95,11 @@ function Home() {
               </div>
               {isValidImageUrl(product.images[0]) ? (
                 <Link to={`/productos/${product.id}`}>
-                  <picture>
-                    <source srcSet={product.images[0]} type="image/webp" />
-                    <source srcSet={product.images[0]} type="image/jpg" />
-                    <LazyImage src={product.images[0]} alt={product.title} />
-                  </picture>
+                  <LazyImage src={product.images[0]} alt={product.title} />
                 </Link>
               ) : (
                 <Link to={`/productos/${product.id}`}>
-                  <picture>
-                    <source srcSet="/no-image.svg" type="image/webp" />
-                    <source srcSet="/no-image.svg" type="image/jpg" />
-                    <LazyImage src="/no-image.svg" alt={product.title} />
-                  </picture>
+                  <LazyImage src="/no-image.svg" alt={product.title} />
                 </Link>
               )}
             </div>

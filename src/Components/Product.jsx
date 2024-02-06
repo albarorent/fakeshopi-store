@@ -25,27 +25,19 @@ function Product({ id, title, img, categorie, price }) {
         </Link>
         {isValidImageUrl(img) ? (
           <Link to={`/productos/${id}`}>
-            <picture>
-              <source srcSet={img} type="image/webp" />
-              <source srcSet={img} type="image/jpg" />
-              <LazyImage
-                src={img}
-                alt={title}
-                w={"w-full sm:w-24 md:w-40 lg:w-52"}
-              />
-            </picture>
+            <LazyImage
+              src={img}
+              alt={title}
+              w={"w-full sm:w-24 md:w-40 lg:w-52"}
+            />
           </Link>
         ) : (
           <Link to={`/productos/${id}`}>
-            <picture>
-              <source srcSet="/no-image.svg" type="image/webp" />
-              <source srcSet="/no-image.svg" type="image/jpg" />
-              <LazyImage
-                src={"/no-image.svg"}
-                alt={"No Image"}
-                w={"w-full sm:w-24 md:w-36 lg:w-52"}
-              />
-            </picture>
+            <LazyImage
+              src={"/no-image.svg"}
+              alt={"No Image"}
+              w={"w-full sm:w-24 md:w-36 lg:w-52"}
+            />
           </Link>
         )}
         <div className="flex justify-between ">

@@ -63,17 +63,9 @@ function Catgorys() {
                     <h1>{categoria.name}</h1>
                   </div>
                   {isValidImageUrl(categoria.image) ? (
-                    <picture>
-                      <source srcSet={categoria.image} type="image/webp" />
-                      <source srcSet={categoria.image} type="image/jpg" />
-                      <LazyImage src={categoria.image} alt={categoria.name} />
-                    </picture>
+                    <LazyImage src={categoria.image} alt={categoria.name} />
                   ) : (
-                    <picture>
-                      <source srcSet="/no-image.svg" type="image/webp" />
-                      <source srcSet="/no-image.svg" type="image/jpg" />
-                      <LazyImage src={"/no-image.svg"} alt={"No Image"} />
-                    </picture>
+                    <LazyImage src={"/no-image.svg"} alt={"No Image"} />
                   )}
                 </div>
               </Link>
