@@ -18,7 +18,7 @@ const LazyImage = ({ src, alt, w = "w-52  h-52" }) => (
       src={src}
       alt={alt}
       aria-hidden="true"
-      loading="eager"
+      loading="lazy"
       onError={(e) => {
         e.target.src = "/no-image.svg";
       }}
