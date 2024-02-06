@@ -4,16 +4,11 @@ import { useEffect } from "react";
 import Catgorys from "../Components/Catgorys";
 import { TbShoppingCart } from "react-icons/tb";
 import { getProduct } from "../api/products";
+import LazyImage from "../Components/LazyImage";
 
 function Home() {
-  const {
-    products,
-    getProductos,
-    loading,
-    setLoading,
-    setCar,
-    setcantCar,
-  } = useShopify();
+  const { products, getProductos, loading, setLoading, setCar, setcantCar } =
+    useShopify();
 
   useEffect(() => {
     setLoading(true);
@@ -72,21 +67,20 @@ function Home() {
             >
               <div className="w-40">
                 <p className="text-xs text-neutral-500">
-                  <Link to={`/productos/${product.id}`}  onClick={() => window.scrollTo(0, 0)}>
+                  <Link to={`/productos/${product.id}`}>
                     {product.category && <small>{product.category.name}</small>}
                   </Link>
                 </p>
                 <h1 className="text-base text-blue-600 font-bold">
-                  <Link to={`/productos/${product.id}`}  onClick={() => window.scrollTo(0, 0)}>
+                  <Link to={`/productos/${product.id}`}>
                     {product.title.length > 20
                       ? `${product.title.slice(0, 20)}...`
                       : product.title}
-                     
                   </Link>
                 </h1>
                 <div className="flex justify-between pr-4">
                   <h2 className="text-lg text-gray-700 font-medium">
-                    <Link to={`/productos/${product.id}`}  onClick={() => window.scrollTo(0, 0)}>
+                    <Link to={`/productos/${product.id}`}>
                       S/.{product.price}
                     </Link>
                   </h2>
@@ -100,20 +94,20 @@ function Home() {
                 </div>
               </div>
               {isValidImageUrl(product.images[0]) ? (
-                <Link to={`/productos/${product.id}`}  onClick={() => window.scrollTo(0, 0)}>
-                  <img
-                    className="w-52"
-                    src={product.images[0]}
-                    alt={product.title}
-                  />
+                <Link to={`/productos/${product.id}`}>
+                  <picture>
+                    <source srcSet={product.images[0]} type="image/webp" />
+                    <source srcSet={product.images[0]} type="image/jpg" />
+                    <LazyImage src={product.images[0]} alt={product.title} />
+                  </picture>
                 </Link>
               ) : (
-                <Link to={`/productos/${product.id}`}  onClick={() => window.scrollTo(0, 0)}>
-                  <img
-                    className="w-52"
-                    src="/no-image.svg"
-                    alt="No Image"
-                  />
+                <Link to={`/productos/${product.id}`}>
+                  <picture>
+                    <source srcSet="/no-image.svg" type="image/webp" />
+                    <source srcSet="/no-image.svg" type="image/jpg" />
+                    <LazyImage src="/no-image.svg" alt={product.title} />
+                  </picture>
                 </Link>
               )}
             </div>

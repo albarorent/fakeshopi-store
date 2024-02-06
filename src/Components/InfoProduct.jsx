@@ -7,6 +7,7 @@ import { RiSubtractFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
 import { TbShoppingCart } from "react-icons/tb";
 import Catgorys from "./Catgorys";
+import LazyImage from "./LazyImage";
 
 function InfoProduct() {
   const {
@@ -18,7 +19,7 @@ function InfoProduct() {
     setCar,
     cantidad,
     setCantidad,
-    setcantCar
+    setcantCar,
   } = useShopify();
   const { id } = useParams();
 
@@ -82,13 +83,10 @@ function InfoProduct() {
             {products ? (
               <>
                 <div>
-                  <img
-                    className="w-[500px]"
+                  <LazyImage
                     src={products.images}
+                    w={"w-[500px]"}
                     alt={products.title}
-                    onError={(e) => {
-                      e.target.src = "/no-image.svg";
-                    }}
                   />
                 </div>
                 <div>

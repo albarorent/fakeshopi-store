@@ -3,6 +3,7 @@ import Catgorys from "../Components/Catgorys";
 import { useShopify } from "../context/ShopifyContext";
 import { RiSubtractFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
+import LazyImage from "../Components/LazyImage";
 
 function Carrito() {
   const { setCar, car, setcantCar, cantCar } = useShopify();
@@ -130,7 +131,9 @@ function Carrito() {
         <div className="w-full">
           <div className="flex flex-col gap-3 ">
             {uniqueCars.length === 0 ? (
-              <p className="text-3xl text-center pt-3 text-red-600">Tu carrito de compras esta vacío.</p>
+              <p className="text-3xl text-center pt-3 text-red-600">
+                Tu carrito de compras esta vacío.
+              </p>
             ) : (
               uniqueCars.map((cars) => (
                 <div
@@ -138,13 +141,10 @@ function Carrito() {
                   className="w-full flex flex-col items-center sm:flex-row gap-3 border border-slate-300 p-4 rounded-md"
                 >
                   <div>
-                    <img
-                      className="w-40"
+                    <LazyImage
                       src={cars.images[0]}
                       alt={cars.title}
-                      onError={(e) => {
-                        e.target.src = "/no-image.svg";
-                      }}
+                      w={"w-40"}
                     />
                   </div>
                   <div>
@@ -196,10 +196,22 @@ function Carrito() {
         <div className="w-full sm:w-1/2">
           <div className="flex flex-col gap-3 border border-slate-300 p-4 rounded-md">
             <h3 className="text-xl font-medium">RESUMEN DE TU PEDIDO</h3>
-            <h1 className="text-sm font-bold">Sub Total: <span className="text-black font-normal"> S/.{subtotal}</span> </h1>
-            <h2 className="text-sm font-bold">Envío: <span className="text-black font-normal">S/.100</span></h2>
-            <h3 className="text-sm font-bold">TOTAL: <span className="text-black font-normal">S/.{subtotal == 0 ? 0 : subtotal + 100}</span> </h3>
-            <button className="bg-blue-800 text-slate-50 rounded-md p-2">Comprar</button>
+            <h1 className="text-sm font-bold">
+              Sub Total:{" "}
+              <span className="text-black font-normal"> S/.{subtotal}</span>{" "}
+            </h1>
+            <h2 className="text-sm font-bold">
+              Envío: <span className="text-black font-normal">S/.100</span>
+            </h2>
+            <h3 className="text-sm font-bold">
+              TOTAL:{" "}
+              <span className="text-black font-normal">
+                S/.{subtotal == 0 ? 0 : subtotal + 100}
+              </span>{" "}
+            </h3>
+            <button className="bg-blue-800 text-slate-50 rounded-md p-2">
+              Comprar
+            </button>
           </div>
         </div>
       </div>

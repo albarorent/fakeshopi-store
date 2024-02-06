@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useShopify } from "../context/ShopifyContext";
 import { Link } from "react-router-dom";
+import LazyImage from "./LazyImage";
 
 function Catgorys() {
   const { categories, loading, getCat, setLoading } = useShopify();
@@ -56,26 +57,23 @@ function Catgorys() {
             <h1>Cargando...</h1>
           ) : (
             slicedCategories.map((categoria) => (
-              <Link
-                to={`/productos/?c=${categoria.id}`}
-                key={categoria.id}
-                onClick={() => window.scrollTo(0, 0)}
-              >
+              <Link to={`/productos/?c=${categoria.id}`} key={categoria.id}>
                 <div className="flex items-center  flex-col-reverse  sm:flex-row-reverse gap-5 group border text-center  sm:text-left border-slate-100 hover:bg-neutral-200 hover:shadow-lg hover:border-transparent p-5 rounded-md">
                   <div className="w-40">
                     <h1>{categoria.name}</h1>
                   </div>
                   {isValidImageUrl(categoria.image) ? (
-                    <img
-                      className="w-52 h-52"
-                      src={categoria.image}
-                      alt={categoria.name}
-                      onError={(e) => {
-                        e.target.src = "/no-image.svg";
-                      }}
-                    />
+                    <picture>
+                      <source srcSet={categoria.image} type="image/webp" />
+                      <source srcSet={categoria.image} type="image/jpg" />
+                      <LazyImage src={categoria.image} alt={categoria.name} />
+                    </picture>
                   ) : (
-                    <img className="w-52" src="/no-image.svg" alt="No Image" />
+                    <picture>
+                      <source srcSet="/no-image.svg" type="image/webp" />
+                      <source srcSet="/no-image.svg" type="image/jpg" />
+                      <LazyImage src={"/no-image.svg"} alt={"No Image"} />
+                    </picture>
                   )}
                 </div>
               </Link>
