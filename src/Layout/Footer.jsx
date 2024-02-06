@@ -25,7 +25,7 @@ function Footer() {
         style={{ backgroundColor: "#333e48" }}
       >
         <div>
-          <img className="w-48" width="12rem" height="79.55px" src="/shopify-app-store.png" alt="arrow" />
+          <img className="w-48" width="12rem" height="79.55px" src="/shopify-app-store.png" alt="portada" />
           <p className="text-white pt-8 font-bold">Información de Contacto</p>
           <p className="text-white text-base">
             CAL. SIMON BOLIVAR NRO. 1100 -CENTRO DE CHICLAYO
