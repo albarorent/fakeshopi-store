@@ -28,7 +28,6 @@ function Carrito() {
     }, {});
 
     setIdCount(updatedIdCount);
-    
   }, [setCar, setIdCount]);
 
   const uniqueCars = car.filter((car) => {
@@ -117,13 +116,8 @@ function Carrito() {
   }
 
   useEffect(() => {
-    if (car.length > 0) {
-      CalcTotal();
-    }
-  }, [car])
-  
-
- 
+    CalcTotal();
+  }, [car]);
 
   return (
     <>
@@ -132,22 +126,25 @@ function Carrito() {
           Carrito de Compras
         </h3>
       </div>
-      <div className="flex flex-col sm:flex-row py-4 justify-center">
-        <div className="w-full sm:w-2/3">
-          <div className="py-3 flex flex-col gap-3">
+      <div className="flex flex-col sm:flex-row py-6 justify-center gap-3">
+        <div className="w-full">
+          <div className="flex flex-col gap-3 ">
             {uniqueCars.length === 0 ? (
               <p>No tiene productos en su carrito.</p>
             ) : (
               uniqueCars.map((cars) => (
                 <div
                   key={cars.id}
-                  className="flex flex-col items-center sm:flex-row gap-3"
+                  className="w-full flex flex-col items-center sm:flex-row gap-3 border border-slate-300 p-4 rounded-md"
                 >
                   <div>
                     <img
                       className="w-40"
                       src={cars.images[0]}
                       alt={cars.title}
+                      onError={(e) => {
+                        e.target.src = "/no-image.svg";
+                      }}
                     />
                   </div>
                   <div>
@@ -159,7 +156,7 @@ function Carrito() {
                         S/.{cars.price}
                       </p>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-2">
                       <h1 className="text-lg text-gray-700 font-medium">
                         Cantidad:
                       </h1>
@@ -172,7 +169,7 @@ function Carrito() {
                         </button>
                         <input
                           type="text"
-                          className="w-14 h-7 border border-slate-600 text-center"
+                          className="w-14 h-7 border border-slate-600 text-center text-gray-700"
                           value={idCount[cars.id] || 0}
                           disabled
                         />
@@ -183,8 +180,6 @@ function Carrito() {
                           <IoMdAdd className="text-center text-xl" />
                         </button>
                       </div>
-                    </div>
-                    <div className="flex items-center justify-center sm:justify-start pt-2">
                       <button
                         className="text-slate-50 w-20 bg-red-700 rounded-md"
                         onClick={() => deleted(cars.id)}
@@ -198,15 +193,13 @@ function Carrito() {
             )}
           </div>
         </div>
-        <div>
-          <h3>RESUMEN DE TU PEDIDO</h3>
-          <div>
-            <h1>Sub Total: {subtotal}</h1>
-            <h2>Envío</h2>
-            <h3>TOTAL:</h3>
-          </div>
-          <div>
-            <button>Comprar</button>
+        <div className="w-1/2">
+          <div className="flex flex-col gap-3 border border-slate-300 p-4 rounded-md">
+            <h3 className="text-xl font-medium">RESUMEN DE TU PEDIDO</h3>
+            <h1 className="text-sm font-bold">Sub Total: <span className="text-black font-normal"> S/.{subtotal}</span> </h1>
+            <h2 className="text-sm font-bold">Envío: <span className="text-black font-normal">S/.100</span></h2>
+            <h3 className="text-sm font-bold">TOTAL: <span className="text-black font-normal">S/.{subtotal == 0 ? 0 : subtotal + 100}</span> </h3>
+            <button className="bg-blue-800 text-slate-50 rounded-md p-2">Comprar</button>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { getTitleProduct, joinFilterProduct } from "../api/products";
 import { useShopify } from "../context/ShopifyContext";
 import { TbShoppingCart } from "react-icons/tb";
 import { CiRepeat } from "react-icons/ci";
-import { MdSearch } from "react-icons/md";
+import { MdSearch, MdLocalPhone, MdOutlineEmail  } from "react-icons/md";
 import { useEffect, useState } from "react";
 
 function Header() {
@@ -71,8 +71,9 @@ function Header() {
           </Link>
         </div>
         <div className="pt-2">
-          <span className="text-slate-50 text-sm">
-            954894132 &nbsp;&nbsp; | &nbsp;&nbsp; ventas@ventas.pe
+        
+          <span className="text-slate-50 text-sm flex gap-2 items-center">
+          <MdLocalPhone className="text-base" /> 954894132 &nbsp;&nbsp; | &nbsp;&nbsp; <MdOutlineEmail className="text-base" /> ventas@ventas.pe
           </span>
         </div>
       </div>
