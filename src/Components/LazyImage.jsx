@@ -15,12 +15,9 @@ const LazyImage = ({ src, alt, w = "w-52  h-52" }) => (
     <source srcSet={isValidUrl(src) ? src : ""} type="image/jpg" />
     <img
       className={`${w}`}
-      src={src}
+      src={isValidUrl(src) ? src : "/no-image.svg"}
       alt={alt}
       loading="lazy"
-      onError={(e) => {
-        e.target.src = "/no-image.svg";
-      }}
     />
   </picture>
 );
