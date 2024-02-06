@@ -4,7 +4,7 @@ import Catgorys from "../Components/Catgorys";
 
 function Footer() {
   return (
-    <>
+    <footer>
       <div style={{ backgroundColor: "#0400C3" }}>
         <div className="flex px-16 gap-2">
           <img
@@ -53,7 +53,7 @@ function Footer() {
           Copyright © 2024 Tienda Online. Todos los derechos reservados{" "}
         </h1>
       </div>
-    </>
+    </footer>
   );
 }
 

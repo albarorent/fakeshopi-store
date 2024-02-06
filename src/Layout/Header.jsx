@@ -3,7 +3,7 @@ import { getTitleProduct, joinFilterProduct } from "../api/products";
 import { useShopify } from "../context/ShopifyContext";
 import { TbShoppingCart } from "react-icons/tb";
 import { CiRepeat } from "react-icons/ci";
-import { MdSearch, MdLocalPhone, MdOutlineEmail  } from "react-icons/md";
+import { MdSearch, MdLocalPhone, MdOutlineEmail } from "react-icons/md";
 import { useEffect, useState } from "react";
 
 function Header() {
@@ -39,11 +39,11 @@ function Header() {
     };
 
     // Agrega el evento de escucha al cambio de tamaño de la ventana
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     // Limpia el evento al desmontar el componente
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -61,7 +61,7 @@ function Header() {
     }
   };
   return (
-    <div style={{ backgroundColor: "#0400C3" }}>
+    <header style={{ backgroundColor: "#0400C3" }}>
       <div className="sm:flex justify-between px-14 hidden">
         <div className="pt-2">
           <Link to="/">
@@ -71,9 +71,10 @@ function Header() {
           </Link>
         </div>
         <div className="pt-2">
-        
           <span className="text-slate-50 text-sm flex gap-2 items-center">
-          <MdLocalPhone className="text-base" /> 954894132 &nbsp;&nbsp; | &nbsp;&nbsp; <MdOutlineEmail className="text-base" /> ventas@ventas.pe
+            <MdLocalPhone className="text-base" /> 954894132 &nbsp;&nbsp; |
+            &nbsp;&nbsp; <MdOutlineEmail className="text-base" />{" "}
+            ventas@ventas.pe
           </span>
         </div>
       </div>
@@ -132,7 +133,7 @@ function Header() {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 }
 
