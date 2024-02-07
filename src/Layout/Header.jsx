@@ -91,7 +91,7 @@ function Header() {
             onChange={handleChange}
             placeholder="Escriba aquí para hacer una busqueda"
           />
-          <button className="text-white text-2xl bg-cyan-950 rounded-r-2xl w-10 flex items-center justify-center">
+          <button className="text-white text-2xl bg-cyan-950 rounded-r-2xl w-10 flex items-center justify-center" aria-label="buscar">
             <MdSearch />
           </button>
         </div>
