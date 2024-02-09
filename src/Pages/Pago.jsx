@@ -36,8 +36,8 @@ function Pago() {
           Datos del Cliente
         </h3>
       </div>
-      <div className="flex flex-col sm:flex-row gap-3 py-5">
-        <div className="w-full sm:w-[800px] ">
+      <div className="flex flex-col md:flex-row gap-3 py-5">
+        <div className="w-full md:w-[800px] ">
           <form onSubmit={onSubmit}>
             <div className="grid gap-6 mb-6 md:grid-cols-2">
               <div>
