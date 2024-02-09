@@ -4,11 +4,19 @@ import { useShopify } from "../context/ShopifyContext";
 import { RiSubtractFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
 import LazyImage from "../Components/LazyImage";
+import SweetAlert from "../Components/SweetAlert";
+import { Link } from "react-router-dom";
 
 function Carrito() {
-  const { setCar, car, setcantCar, cantCar } = useShopify();
-  const [idCount, setIdCount] = useState({});
-  const [subtotal, setSubtotal] = useState(0);
+  const {
+    setCar,
+    car,
+    setcantCar,
+    idCount,
+    setIdCount,
+    subtotal,
+    setSubtotal,
+  } = useShopify();
 
   const uniqueIds = {};
   const uniqueIdsCant = {};
@@ -109,6 +117,7 @@ function Carrito() {
       return false;
     });
     setcantCar(uniqueCars.length);
+    SweetAlert("producto eliminado.");
   };
 
   function CalcTotal() {
@@ -209,9 +218,12 @@ function Carrito() {
                 S/.{subtotal == 0 ? 0 : subtotal + 100}
               </span>{" "}
             </h3>
-            <button className="bg-blue-800 text-slate-50 rounded-md p-2">
+            <Link
+              to="/carrito/procesarpago"
+              className="bg-blue-800 text-slate-50 rounded-md p-2 text-center"
+            >
               Comprar
-            </button>
+            </Link>
           </div>
         </div>
       </div>

@@ -18,9 +18,12 @@ export function ShopifyProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [car,setCar] = useState([]);
-  const [cantidad,setCantidad] = useState(1);
+  const [car, setCar] = useState([]);
+  const [cantidad, setCantidad] = useState(1);
   const [cantCar, setcantCar] = useState(0);
+  const [idCount, setIdCount] = useState({});
+  const [subtotal, setSubtotal] = useState(0);
+
   initTE({ Select });
 
   const getProductos = async () => {
@@ -49,7 +52,11 @@ export function ShopifyProvider({ children }) {
         cantidad,
         setCantidad,
         cantCar,
-        setcantCar
+        setcantCar,
+        idCount,
+        setIdCount,
+        subtotal,
+        setSubtotal,
       }}
     >
       {children}

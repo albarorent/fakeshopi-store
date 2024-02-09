@@ -8,6 +8,7 @@ import { IoMdAdd } from "react-icons/io";
 import { TbShoppingCart } from "react-icons/tb";
 import Catgorys from "./Catgorys";
 import LazyImage from "./LazyImage";
+import SweetAlert from "./SweetAlert";
 
 function InfoProduct() {
   const {
@@ -68,6 +69,7 @@ function InfoProduct() {
         localStorage.setItem("car", JSON.stringify(updatedCar));
         return updatedCar;
       });
+      SweetAlert("producto agregado.");
     } else {
       console.error("Error: products no es un objeto válido");
     }

@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const isValidUrl = (url) => {
   try {
     new URL(url);
@@ -10,6 +11,7 @@ const isValidUrl = (url) => {
 };
 
 const LazyImage = ({ src, alt, w = "w-52  h-52" }) => (
+    
   <picture>
     <source srcSet={isValidUrl(src) ? src : "/no-image.svg"} type="image/webp" />
     <source srcSet={isValidUrl(src) ? src : "/no-image.svg"} type="image/jpg" />
