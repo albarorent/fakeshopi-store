@@ -5,7 +5,7 @@ import { RiSubtractFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
 import LazyImage from "../Components/LazyImage";
 import SweetAlert from "../Components/SweetAlert";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Carrito() {
   const {
@@ -20,6 +20,7 @@ function Carrito() {
 
   const uniqueIds = {};
   const uniqueIdsCant = {};
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Obtener el array de objetos desde el localStorage
@@ -129,6 +130,14 @@ function Carrito() {
     CalcTotal();
   }, [car]);
 
+  const handleClick = () => {
+    if (uniqueCars.length === 0) {
+      SweetAlert("No tiene ningun producto","warning");
+    } else {
+      navigate("/carrito/procesarpago");
+    }
+  };
+
   return (
     <>
       <div className="pt-5 border-b border-slate-300">
@@ -218,12 +227,13 @@ function Carrito() {
                 S/.{subtotal == 0 ? 0 : subtotal + 100}
               </span>{" "}
             </h3>
-            <Link
-              to="/carrito/procesarpago"
+
+            <button
+              onClick={() => handleClick()}
               className="bg-blue-800 text-slate-50 rounded-md p-2 text-center"
             >
               Comprar
-            </Link>
+            </button>
           </div>
         </div>
       </div>
