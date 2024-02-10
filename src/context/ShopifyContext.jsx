@@ -23,6 +23,7 @@ export function ShopifyProvider({ children }) {
   const [cantCar, setcantCar] = useState(0);
   const [idCount, setIdCount] = useState({});
   const [subtotal, setSubtotal] = useState(0);
+  const [compare, setCompare] = useState([]);
 
   initTE({ Select });
 
@@ -57,6 +58,8 @@ export function ShopifyProvider({ children }) {
         setIdCount,
         subtotal,
         setSubtotal,
+        compare,
+        setCompare,
       }}
     >
       {children}
