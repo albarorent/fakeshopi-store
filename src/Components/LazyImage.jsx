@@ -1,27 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 
+const LazyImage = ({ src, alt, w = "w-52  h-52" }) => {
+  const [error, setError] = useState(false);
 
-const isValidUrl = (url) => {
-  try {
-    new URL(url);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
+  const handleImageError = () => {
+    if (!error) {
+      setError(true);
+    }
+  };
 
-const LazyImage = ({ src, alt, w = "w-52  h-52" }) => (
-    
-  <picture>
-    <source srcSet={isValidUrl(src) ? src : "/no-image.svg"} type="image/webp" />
-    <source srcSet={isValidUrl(src) ? src : "/no-image.svg"} type="image/jpg" />
+  return (
+    <picture>
+    <source
+      srcSet={error ? "/no-image.svg" : src}
+      type="image/webp"
+    />
+    <source srcSet={error ? "/no-image.svg" : src} type="image/jpg" />
     <img
       className={`${w}`}
-      src={isValidUrl(src) ? src : "/no-image.svg"}
+      src={error ? "/no-image.svg" : src}
       alt="alt"
       loading="lazy"
+      onError={handleImageError}
     />
   </picture>
-);
+  );
+
+};
 
 export default LazyImage;
