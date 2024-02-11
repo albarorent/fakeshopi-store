@@ -104,13 +104,7 @@ function Carrito() {
     localStorage.setItem("car", JSON.stringify(updatedCar));
     const cant = JSON.parse(localStorage.getItem("car")) || [];
 
-    const uniqueCars = cant.filter((car) => {
-      if (!uniqueIdsCant[car.id]) {
-        uniqueIdsCant[car.id] = true;
-        return true;
-      }
-      return false;
-    });
+    const uniqueCars = uniqueIds(cant);
     setcantCar(uniqueCars.length);
     SweetAlert("producto eliminado.");
   };
