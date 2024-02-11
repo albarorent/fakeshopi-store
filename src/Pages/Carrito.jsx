@@ -19,7 +19,6 @@ function Carrito() {
     setSubtotal,
   } = useShopify();
 
-  const uniqueIdsCant = {};
   const navigate = useNavigate();
   const uniqueCars = uniqueIds(car);
 

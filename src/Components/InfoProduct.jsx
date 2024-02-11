@@ -34,7 +34,7 @@ function InfoProduct() {
           setProducts(res.data);
           setLoading(false);
         } catch (error) {
-          console.error(error);
+          SweetAlert(error,"error");
         }
       }
     };
@@ -65,7 +65,7 @@ function InfoProduct() {
       });
       SweetAlert("producto agregado.");
     } else {
-      console.error("Error: products no es un objeto válido");
+      SweetAlert("Error: products no es un objeto válido","error");
     }
   };
 
