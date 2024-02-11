@@ -8,7 +8,7 @@ import { IoMdAdd } from "react-icons/io";
 import { TbShoppingCart } from "react-icons/tb";
 import Catgorys from "./Catgorys";
 import LazyImage from "./LazyImage";
-import SweetAlert from "./SweetAlert";
+import SweetAlert from "../lib/SweetAlert";
 
 function InfoProduct() {
   const {
@@ -16,11 +16,12 @@ function InfoProduct() {
     setProducts,
     loading,
     setLoading,
-    car,
     setCar,
     cantidad,
     setCantidad,
     setcantCar,
+    setCompare,
+    compare,
   } = useShopify();
   const { id } = useParams();
 
@@ -75,6 +76,26 @@ function InfoProduct() {
     }
   };
 
+  const handleCompareClick = () => {
+    setCompare((prevCompare) => {
+      // Verifica si el producto ya está en la lista de comparación
+      const isProductInCompare = prevCompare.some(
+        (compareProduct) => compareProduct.id === products.id
+      );
+      if (!isProductInCompare) {
+        // Si el producto no está en la lista de comparación, agrégalo
+        const updatedCompare = [...prevCompare, products];
+        localStorage.setItem("compare", JSON.stringify(updatedCompare));
+        SweetAlert("Producto agregado para comparar.");
+        return updatedCompare;
+      } else {
+        // Si el producto ya está en la lista de comparación, no hagas ningún cambio
+        SweetAlert("Ya se agrego el producto.","warning");
+        return prevCompare;
+      }
+    });
+  };
+
   return (
     <>
       {loading && products === null ? (
@@ -106,7 +127,10 @@ function InfoProduct() {
                     </p>
                   </div>
                   <div className="border-t py-3">
-                    <button className="font-extralight text-neutral-500  flex items-center gap-2">
+                    <button
+                      className="font-extralight text-neutral-500  flex items-center gap-2"
+                      onClick={handleCompareClick}
+                    >
                       <CiRepeat />
                       Comparar
                     </button>

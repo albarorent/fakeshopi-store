@@ -5,7 +5,7 @@ import Catgorys from "../Components/Catgorys";
 import { TbShoppingCart } from "react-icons/tb";
 import { getProduct } from "../api/products";
 import LazyImage from "../Components/LazyImage";
-import SweetAlert from "../Components/SweetAlert";
+import SweetAlert from "../lib/SweetAlert";
 
 function Home() {
   const { products, getProductos, loading, setLoading, setCar, setcantCar } =

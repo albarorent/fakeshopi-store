@@ -7,6 +7,7 @@ import InfoProduct from "./Components/InfoProduct";
 import NotFound from "./Pages/NotFound";
 import Carrito from "./Pages/Carrito";
 import Pago from "./Pages/Pago";
+import Comparar from "./Pages/Comparar";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
               <Route path="/productos/" element={<Products />} />
               <Route path="/productos/:id" element={<InfoProduct />} />
               <Route path="/carrito/" element={<Carrito />} />
+              <Route path="/comparar/" element={<Comparar />} />
               <Route path="/carrito/procesarpago" element={<Pago />} />
             </Route>
             <Route path="*" element={<NotFound />} />

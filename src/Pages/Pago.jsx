@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useShopify } from "../context/ShopifyContext";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import SweetAlert from "../Components/SweetAlert";
+import SweetAlert from "../lib/SweetAlert";
 
 function Pago() {
   const { idCount, subtotal, setcantCar, setCar } = useShopify();

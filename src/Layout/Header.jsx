@@ -7,7 +7,7 @@ import { MdSearch, MdLocalPhone, MdOutlineEmail } from "react-icons/md";
 import { useEffect, useState } from "react";
 
 function Header() {
-  const { setProducts, car, setCar, cantCar, setcantCar } = useShopify();
+  const { setProducts, setCar, cantCar, setcantCar, setCompare } = useShopify();
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   const location = useLocation();
@@ -19,6 +19,9 @@ function Header() {
   useEffect(() => {
     const storedCar = JSON.parse(localStorage.getItem("car")) || [];
     setCar(storedCar);
+    const comparedProducts = JSON.parse(localStorage.getItem("compare")) || [];
+    setCompare(comparedProducts);
+    
     const uniqueIds = new Set();
     const uniqueProducts = storedCar.filter((product) => {
       if (!uniqueIds.has(product.id)) {
@@ -81,7 +84,13 @@ function Header() {
       <div className="flex items-center justify-between px-3 sm:px-14 p-5 gap-4 sm:gap-0">
         <div>
           <Link to="/">
-            <img className="w-48" width="12rem" height="79.55px" alt="portada" src="/shopify-app-store.png" />
+            <img
+              className="w-48"
+              width="12rem"
+              height="79.55px"
+              alt="portada"
+              src="/shopify-app-store.png"
+            />
           </Link>
         </div>
         <div className="w-2/4 sm:flex hidden">
@@ -91,7 +100,10 @@ function Header() {
             onChange={handleChange}
             placeholder="Escriba aquí para hacer una busqueda"
           />
-          <button className="text-white text-2xl bg-cyan-950 rounded-r-2xl w-10 flex items-center justify-center" aria-label="buscar">
+          <button
+            className="text-white text-2xl bg-cyan-950 rounded-r-2xl w-10 flex items-center justify-center"
+            aria-label="buscar"
+          >
             <MdSearch />
           </button>
         </div>
@@ -115,9 +127,11 @@ function Header() {
             </Link>
           </button>
           <button aria-label="comparar">
-            <span className="text-2xl text-white">
-              <CiRepeat />
-            </span>
+            <Link to="/comparar">
+              <span className="text-2xl text-white">
+                <CiRepeat />
+              </span>
+            </Link>
           </button>
         </div>
         <div className={` ${isNavOpen ? "showMenuNav" : "hideMenuNav"}`}>

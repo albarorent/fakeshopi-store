@@ -4,7 +4,7 @@ import { useShopify } from "../context/ShopifyContext";
 import { RiSubtractFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
 import LazyImage from "../Components/LazyImage";
-import SweetAlert from "../Components/SweetAlert";
+import SweetAlert from "../lib/SweetAlert";
 import { useNavigate } from "react-router-dom";
 
 function Carrito() {
