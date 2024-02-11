@@ -1,5 +1,5 @@
 import React from 'react'
-import { useShopify } from '../context/ShopifyContext'
+import { useShopify } from './context/ShopifyContext'
 import { Navigate, Outlet } from 'react-router-dom';
 
 function ProtectedRoute() {

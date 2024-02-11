@@ -8,7 +8,7 @@ import NotFound from "./Pages/NotFound";
 import Carrito from "./Pages/Carrito";
 import Pago from "./Pages/Pago";
 import Comparar from "./Pages/Comparar";
-import ProtectedRoute from "./Components/ProtectedRoute";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   return (
