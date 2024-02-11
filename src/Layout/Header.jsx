@@ -5,6 +5,7 @@ import { TbShoppingCart } from "react-icons/tb";
 import { CiRepeat } from "react-icons/ci";
 import { MdSearch, MdLocalPhone, MdOutlineEmail } from "react-icons/md";
 import { useEffect, useState } from "react";
+import { uniqueIds } from "../helpers/Utils";
 
 function Header() {
   const { setProducts, setCar, cantCar, setcantCar, setCompare } = useShopify();
@@ -21,15 +22,9 @@ function Header() {
     setCar(storedCar);
     const comparedProducts = JSON.parse(localStorage.getItem("compare")) || [];
     setCompare(comparedProducts);
+   
+    const uniqueProducts = uniqueIds(storedCar);
     
-    const uniqueIds = new Set();
-    const uniqueProducts = storedCar.filter((product) => {
-      if (!uniqueIds.has(product.id)) {
-        uniqueIds.add(product.id);
-        return true;
-      }
-      return false;
-    });
     const cantidadDeProductos = uniqueProducts.length;
     setcantCar(cantidadDeProductos);
   }, []);

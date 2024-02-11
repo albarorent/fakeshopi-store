@@ -6,6 +6,7 @@ import { IoMdAdd } from "react-icons/io";
 import LazyImage from "../Components/LazyImage";
 import SweetAlert from "../lib/SweetAlert";
 import { useNavigate } from "react-router-dom";
+import { uniqueIds } from "../helpers/Utils";
 
 function Carrito() {
   const {
@@ -18,9 +19,9 @@ function Carrito() {
     setSubtotal,
   } = useShopify();
 
-  const uniqueIds = {};
   const uniqueIdsCant = {};
   const navigate = useNavigate();
+  const uniqueCars = uniqueIds(car);
 
   useEffect(() => {
     // Obtener el array de objetos desde el localStorage
@@ -40,13 +41,6 @@ function Carrito() {
     setIdCount(updatedIdCount);
   }, [setCar, setIdCount]);
 
-  const uniqueCars = car.filter((car) => {
-    if (!uniqueIds[car.id]) {
-      uniqueIds[car.id] = true;
-      return true;
-    }
-    return false;
-  });
 
   const sumClick = (productId) => {
     // Obtener el producto correspondiente al productId
@@ -132,7 +126,7 @@ function Carrito() {
 
   const handleClick = () => {
     if (uniqueCars.length === 0) {
-      SweetAlert("No tiene ningun producto","warning");
+      SweetAlert("No tiene ningun producto", "warning");
     } else {
       navigate("/carrito/procesarpago");
     }

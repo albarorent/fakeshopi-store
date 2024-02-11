@@ -9,6 +9,7 @@ import { TbShoppingCart } from "react-icons/tb";
 import Catgorys from "./Catgorys";
 import LazyImage from "./LazyImage";
 import SweetAlert from "../lib/SweetAlert";
+import { uniqueIds } from "../helpers/Utils";
 
 function InfoProduct() {
   const {
@@ -21,7 +22,6 @@ function InfoProduct() {
     setCantidad,
     setcantCar,
     setCompare,
-    compare,
   } = useShopify();
   const { id } = useParams();
 
@@ -57,14 +57,7 @@ function InfoProduct() {
     if (products) {
       setCar((prevCar) => {
         const updatedCar = [...prevCar, ...Array(cantidad).fill(products)];
-        const uniqueIds = new Set();
-        const uniqueProducts = updatedCar.filter((product) => {
-          if (!uniqueIds.has(product.id)) {
-            uniqueIds.add(product.id);
-            return true;
-          }
-          return false;
-        });
+        const uniqueProducts = uniqueIds(updatedCar);
         const cantidadDeProductos = uniqueProducts.length;
         setcantCar(cantidadDeProductos);
         localStorage.setItem("car", JSON.stringify(updatedCar));

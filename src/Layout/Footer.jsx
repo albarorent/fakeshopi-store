@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Catgorys from "../Components/Catgorys";
 
 function Footer() {
   return (

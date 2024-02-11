@@ -6,6 +6,7 @@ import { TbShoppingCart } from "react-icons/tb";
 import { getProduct } from "../api/products";
 import LazyImage from "../Components/LazyImage";
 import SweetAlert from "../lib/SweetAlert";
+import { uniqueIds } from "../helpers/Utils";
 
 function Home() {
   const { products, getProductos, loading, setLoading, setCar, setcantCar } =
@@ -31,14 +32,7 @@ function Home() {
       const product = await getProduct(productId);
       setCar((prevCar) => {
         const updatedCar = [...prevCar, ...Array(1).fill(product.data)];
-        const uniqueIds = new Set();
-        const uniqueProducts = updatedCar.filter((product) => {
-          if (!uniqueIds.has(product.id)) {
-            uniqueIds.add(product.id);
-            return true;
-          }
-          return false;
-        });
+        const uniqueProducts = uniqueIds(updatedCar);
         const cantidadDeProductos = uniqueProducts.length;
         setcantCar(cantidadDeProductos);
         localStorage.setItem("car", JSON.stringify(updatedCar));
