@@ -8,7 +8,7 @@ function Catgorys() {
   const { categories, loading, getCat, setLoading } = useShopify();
 
   const itemsPerPage = 6;
-  let longitud = categories.length > 6 ? 6 : categories.length;
+  const longitud = categories.length > 6 ? 6 : categories.length;
   const pageCount = Math.ceil(longitud / itemsPerPage);
   const [currentPage, setCurrentPage] = useState(0);
 

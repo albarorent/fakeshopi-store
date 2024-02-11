@@ -17,6 +17,7 @@ function Carrito() {
     setIdCount,
     subtotal,
     setSubtotal,
+    setAutenticated
   } = useShopify();
 
   const navigate = useNavigate();
@@ -121,6 +122,7 @@ function Carrito() {
     if (uniqueCars.length === 0) {
       SweetAlert("No tiene ningun producto", "warning");
     } else {
+      setAutenticated(true);
       navigate("/carrito/procesarpago");
     }
   };

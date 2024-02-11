@@ -5,20 +5,14 @@ import { useForm } from "react-hook-form";
 import SweetAlert from "../lib/SweetAlert";
 
 function Pago() {
-  const { idCount, subtotal, setcantCar, setCar } = useShopify();
+  const { idCount, subtotal, setcantCar, setCar, autenticated } = useShopify();
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm();
 
-  useEffect(() => {
-    if (!idCount || !subtotal) {
-      navigate("/carrito");
-    }
-  }, []);
 
   const onSubmit = handleSubmit((data) => {
     SweetAlert(`Gracias por su compra ${data.first_name}. Vuelva pronto.`);

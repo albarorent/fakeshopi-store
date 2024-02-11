@@ -8,6 +8,7 @@ import NotFound from "./Pages/NotFound";
 import Carrito from "./Pages/Carrito";
 import Pago from "./Pages/Pago";
 import Comparar from "./Pages/Comparar";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 function App() {
   return (
@@ -21,7 +22,9 @@ function App() {
               <Route path="/productos/:id" element={<InfoProduct />} />
               <Route path="/carrito/" element={<Carrito />} />
               <Route path="/comparar/" element={<Comparar />} />
-              <Route path="/carrito/procesarpago" element={<Pago />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path="/carrito/procesarpago" element={<Pago />} />
+              </Route>
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
