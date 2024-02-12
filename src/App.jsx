@@ -1,20 +1,24 @@
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Products from "./Pages/Products";
-import Layaout from "./Layout/Layaout";
-import Home from "./Pages/Home";
 import { ShopifyProvider } from "./context/ShopifyContext";
-import InfoProduct from "./Components/InfoProduct";
-import NotFound from "./Pages/NotFound";
-import Carrito from "./Pages/Carrito";
-import Pago from "./Pages/Pago";
-import Comparar from "./Pages/Comparar";
-import ProtectedRoute from "./ProtectedRoute";
+
+// Importa tus componentes de manera dinámica
+const Products = lazy(() => import("./Pages/Products"));
+const Layaout = lazy(() => import("./Layout/Layaout"));
+const Home = lazy(() => import("./Pages/Home"));
+const InfoProduct = lazy(() => import("./Components/InfoProduct"));
+const NotFound = lazy(() => import("./Pages/NotFound"));
+const Carrito = lazy(() => import("./Pages/Carrito"));
+const Pago = lazy(() => import("./Pages/Pago"));
+const Comparar = lazy(() => import("./Pages/Comparar"));
+const ProtectedRoute = lazy(() => import("./ProtectedRoute"));
 
 function App() {
   return (
-    <>
-      <ShopifyProvider>
-        <BrowserRouter>
+    <ShopifyProvider>
+      <BrowserRouter>
+        {/* Envuelve tu aplicación con Suspense y proporciona un componente de carga */}
+        <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<Layaout />}>
               <Route index element={<Home />} />
@@ -28,9 +32,9 @@ function App() {
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </BrowserRouter>
-      </ShopifyProvider>
-    </>
+        </Suspense>
+      </BrowserRouter>
+    </ShopifyProvider>
   );
 }
 
