@@ -101,7 +101,7 @@ function InfoProduct() {
                 <div>
                   <LazyImage
                     src={products.images}
-                    w={"w-[500px]"}
+                    w={"w-[350px]"}
                     alt={products.title}
                   />
                 </div>
