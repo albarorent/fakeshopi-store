@@ -39,6 +39,7 @@ function Catgorys() {
     currentPage * itemsPerPage,
     (currentPage + 1) * itemsPerPage
   );
+
   return (
     <>
       <div className="pt-5 border-b border-slate-300">
@@ -75,15 +76,14 @@ function Catgorys() {
 
         <div className="flex p-4">
           <ReactPaginate
-            className="flex gap-4"
             pageCount={pageCount}
             pageRangeDisplayed={3}
             marginPagesDisplayed={1}
             onPageChange={handlePageChange}
             containerClassName="pagination"
             activeClassName="active"
-            previousLabel={"Anterior"}
-            nextLabel={"Siguiente"}
+            previousClassName="hidden"
+            nextClassName="hidden"
           />
         </div>
       </div>
