@@ -4,21 +4,20 @@ import { Link } from "react-router-dom";
 function NotFound() {
   return (
     <>
-      <div className="flex flex-col bg-gray-50 items-center justify-center h-screen">
-        <h1 className="text-4xl font-bold mb-4">404 - Not Found</h1>
-        <p className="text-gray-600">
-          Sorry, the page you're looking for doesn't exist.
-        </p>
-
-        <div className="mt-6"></div>
-
-        <div className="mt-4 text-center">
-          <p className="text-gray-600 mb-3">Or, you might want to explore:</p>
-
-          <Link to="/" className="text-blue-500 hover:underline">
-            Home
-          </Link>
+      <div className="h-screen w-full flex flex-col justify-center items-center bg-[#1A2238]">
+        <h1 className="text-9xl font-extrabold text-white tracking-widest">404</h1>
+        <div className="bg-[#FF6A3D] px-2 text-sm rounded rotate-12 absolute">
+          Page Not Found
         </div>
+        <button className="mt-5">
+          <p className="relative inline-block text-sm font-medium text-[#FF6A3D] group active:text-orange-500 focus:outline-none focus:ring">
+            <span className="absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-[#FF6A3D] group-hover:translate-y-0 group-hover:translate-x-0"></span>
+
+            <span className="relative block px-8 py-3 bg-[#1A2238] border border-current">
+              <Link to="/">Go Home</Link>
+            </span>
+          </p>
+        </button>
       </div>
     </>
   );
