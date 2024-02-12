@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer>
+    <footer className="w-full">
       <div style={{ backgroundColor: "#0400C3" }}>
         <div className="flex px-16 gap-2">
           <img
