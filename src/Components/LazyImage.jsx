@@ -22,6 +22,7 @@ const LazyImage = ({ src, alt, w = "w-52  h-52" }) => {
       alt="alt"
       loading="lazy"
       onError={handleImageError}
+      width="206px"
     />
   </picture>
   );
