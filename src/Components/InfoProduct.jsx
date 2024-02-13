@@ -10,6 +10,7 @@ import Catgorys from "./Catgorys";
 import LazyImage from "./LazyImage";
 import SweetAlert from "../lib/SweetAlert";
 import { uniqueIds } from "../helpers/Utils";
+import { TEAnimation } from "tw-elements-react";
 
 function InfoProduct() {
   const {
@@ -34,7 +35,7 @@ function InfoProduct() {
           setProducts(res.data);
           setLoading(false);
         } catch (error) {
-          SweetAlert(error,"error");
+          SweetAlert(error, "error");
         }
       }
     };
@@ -65,7 +66,7 @@ function InfoProduct() {
       });
       SweetAlert("producto agregado.");
     } else {
-      SweetAlert("Error: products no es un objeto válido","error");
+      SweetAlert("Error: products no es un objeto válido", "error");
     }
   };
 
@@ -83,7 +84,7 @@ function InfoProduct() {
         return updatedCompare;
       } else {
         // Si el producto ya está en la lista de comparación, no hagas ningún cambio
-        SweetAlert("Ya se agrego el producto.","warning");
+        SweetAlert("Ya se agrego el producto.", "warning");
         return prevCompare;
       }
     });
@@ -132,13 +133,21 @@ function InfoProduct() {
                     <h1 className="font-normal text-xl pb-7">
                       Comparte con tus amigos
                     </h1>
-                    <Link
-                      to={`https://www.facebook.com/sharer/sharer.php?u=https://fake-shoppistore.netlify.app/productos/${products.id}`}
-                      target="popup"
-                      className="bg-blue-700 p-3 rounded-full text-white font-medium"
+                    <TEAnimation
+                      animation="[fly-in_0.5s]"
+                      start="onHover"
+                      reset
+                      className="rounded-full w-[94.27px]"
                     >
-                      Facebook
-                    </Link>
+                      <Link
+                        to={`https://www.facebook.com/sharer/sharer.php?u=https://fake-shoppistore.netlify.app/productos/${products.id}`}
+                        target="popup"
+                        className="bg-blue-700 p-3 rounded-full text-white font-medium"
+                      >
+                        Facebook
+                      </Link>
+                    </TEAnimation>
+
                     <h1 className="pt-8 pb-5 text-4xl">S/.{products.price}</h1>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-5 sm:gap-8">
@@ -166,13 +175,28 @@ function InfoProduct() {
                       </div>
                     </div>
                     <div className="flex items-center justify-center ">
-                      <button
+                      <TEAnimation
+                        animation="[fly-in_0.5s]"
+                        start="onHover"
+                        reset
+                        className="rounded-full"
+                        style={{ backgroundColor: "#0400C3" }}
+                      >
+                        <button
+                          className="p-3 w-32 bg-orange-600 rounded-full text-white flex items-center gap-2 justify-center font-medium"
+                          style={{ backgroundColor: "#0400C3" }}
+                          onClick={handleOnclick}
+                        >
+                          <TbShoppingCart className="text-xl" /> Agregar
+                        </button>
+                      </TEAnimation>
+                      {/* <button
                         className="p-3 w-32 bg-orange-600 rounded-full text-white flex items-center gap-2 justify-center font-medium"
                         style={{ backgroundColor: "#0400C3" }}
                         onClick={handleOnclick}
                       >
                         <TbShoppingCart className="text-xl" /> Agregar
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </div>

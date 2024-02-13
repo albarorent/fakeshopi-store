@@ -9,6 +9,13 @@ export default {
     extend: {},
   },
   plugins: [require("tw-elements-react/dist/plugin.cjs")],
-  darkMode: "class"
+  darkMode: "class",
+  purge: {
+    content: [
+      "./index.html",
+      "./src/**/*.{js,ts,jsx,tsx}",
+      "./node_modules/tw-elements-react/dist/js/**/*.js"
+    ],
+    safelist: ['animate-[drop-in_0.5s]', 'animate-[fly-in_0.5s]'], // Agrega aquí las animaciones que deseas incluir
+  },
 }
-

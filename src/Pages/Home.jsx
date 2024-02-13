@@ -7,6 +7,7 @@ import { getProduct } from "../api/products";
 import LazyImage from "../Components/LazyImage";
 import SweetAlert from "../lib/SweetAlert";
 import { uniqueIds } from "../helpers/Utils";
+import { TEAnimation } from "tw-elements-react";
 
 function Home() {
   const { products, getProductos, loading, setLoading, setCar, setcantCar } =
@@ -80,14 +81,20 @@ function Home() {
                       S/.{product.price}
                     </Link>
                   </h2>
-                  <button
-                    onClick={() => handleOnclick(product.id)}
-                    className="rounded-full p-2 text-white"
+                  <TEAnimation
+                    animation="[fly-in_0.5s]"
+                    start="onHover"
+                    reset
+                    className="rounded-full"
                     style={{ backgroundColor: "#0400C3" }}
-                    aria-label="carrito"
                   >
-                    <TbShoppingCart className="text-xl" />
-                  </button>
+                    <button
+                      className=" p-2 text-white"
+                      onClick={() => handleOnclick(product.id)}
+                    >
+                      <TbShoppingCart className="text-xl" />
+                    </button>
+                  </TEAnimation>
                 </div>
               </div>
               {isValidImageUrl(product.images[0]) ? (
