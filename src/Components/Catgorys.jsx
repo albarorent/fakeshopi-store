@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useShopify } from "../context/ShopifyContext";
 import { Link } from "react-router-dom";
-import LazyImage from "./LazyImage";
+const LazyImage = lazy(()=>import('../Components/LazyImage'));
 
 function Catgorys() {
   const { categories, loading, getCat, setLoading } = useShopify();

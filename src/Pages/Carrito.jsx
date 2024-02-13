@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, useEffect } from "react";
 import Catgorys from "../Components/Catgorys";
 import { useShopify } from "../context/ShopifyContext";
 import { RiSubtractFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
-import LazyImage from "../Components/LazyImage";
+const LazyImage = lazy(()=>import('../Components/LazyImage'));
 import SweetAlert from "../lib/SweetAlert";
 import { useNavigate } from "react-router-dom";
 import { uniqueIds } from "../helpers/Utils";

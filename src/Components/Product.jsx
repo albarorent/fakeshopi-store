@@ -1,7 +1,7 @@
-import React from "react";
+import React, { lazy } from "react";
 import { Link } from "react-router-dom";
 import { TbShoppingCart } from "react-icons/tb";
-import LazyImage from "./LazyImage";
+const LazyImage = lazy(()=>import('../Components/LazyImage'));
 
 function Product({ id, title, img, categorie, price }) {
   const isValidImageUrl = (imageUrl) => {

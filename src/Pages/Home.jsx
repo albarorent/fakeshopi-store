@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { useShopify } from "../context/ShopifyContext";
-import { useEffect } from "react";
+import { lazy, useEffect } from "react";
 import Catgorys from "../Components/Catgorys";
 import { TbShoppingCart } from "react-icons/tb";
 import { getProduct } from "../api/products";
-import LazyImage from "../Components/LazyImage";
 import SweetAlert from "../lib/SweetAlert";
 import { uniqueIds } from "../helpers/Utils";
 import { TEAnimation } from "tw-elements-react";
+const LazyImage = lazy(()=>import('../Components/LazyImage'));
 
 function Home() {
   const { products, getProductos, loading, setLoading, setCar, setcantCar } =
