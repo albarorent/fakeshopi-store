@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ShopifyProvider } from "./context/ShopifyContext";
 
@@ -18,7 +18,6 @@ function App() {
     <ShopifyProvider>
       <BrowserRouter>
         {/* Envuelve tu aplicación con Suspense y proporciona un componente de carga */}
-        <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<Layaout />}>
               <Route index element={<Home />} />
@@ -32,7 +31,6 @@ function App() {
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </Suspense>
       </BrowserRouter>
     </ShopifyProvider>
   );

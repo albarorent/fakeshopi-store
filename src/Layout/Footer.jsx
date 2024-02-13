@@ -26,7 +26,7 @@ function Footer() {
         <div>
           <img
             className="w-48"
-            width="12rem"
+            width="192px"
             height="79.55px"
             src="/shopify-app-store.png"
             alt="portada"

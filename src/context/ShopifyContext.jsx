@@ -26,7 +26,6 @@ export function ShopifyProvider({ children }) {
   const [compare, setCompare] = useState([]);
   const [autenticated, setAutenticated] = useState(false);
 
-  initTE({ Select });
 
   const getProductos = async () => {
     const res = await getProducts();

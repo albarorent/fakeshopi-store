@@ -81,7 +81,7 @@ function Header() {
           <Link to="/">
             <img
               className="w-48"
-              width="12rem"
+              width="192px"
               height="79.55px"
               alt="portada"
               src="/shopify-app-store.png"
