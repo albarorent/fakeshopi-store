@@ -23,6 +23,7 @@ const LazyImage = ({ src, alt, w = "w-52  h-52" }) => {
           alt={alt}
           width="206px"
           height="206px"
+          loading="lazy"
         />
       ) : (
         <picture>
