@@ -22,9 +22,9 @@ function Header() {
     setCar(storedCar);
     const comparedProducts = JSON.parse(localStorage.getItem("compare")) || [];
     setCompare(comparedProducts);
-   
+
     const uniqueProducts = uniqueIds(storedCar);
-    
+
     const cantidadDeProductos = uniqueProducts.length;
     setcantCar(cantidadDeProductos);
   }, []);
@@ -122,7 +122,7 @@ function Header() {
             </Link>
           </button>
           <button aria-label="comparar">
-            <Link to="/comparar">
+            <Link to="/comparar" aria-label="comparar">
               <span className="text-2xl text-white">
                 <CiRepeat />
               </span>

@@ -91,6 +91,7 @@ function Home() {
                     <button
                       className=" p-2 text-white"
                       onClick={() => handleOnclick(product.id)}
+                      aria-label="car"
                     >
                       <TbShoppingCart className="text-xl" />
                     </button>

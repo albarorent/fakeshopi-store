@@ -31,7 +31,7 @@ const LazyImage = ({ src, alt, w = "w-52  h-52" }) => {
           <img
             className={`${w}`}
             src={src}
-            alt={alt}
+            alt="alt"
             loading="lazy"
             onLoad={handleImageLoad}
             onError={handleImageError}
