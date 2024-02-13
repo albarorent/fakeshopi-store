@@ -20,7 +20,7 @@ const LazyImage = ({ src, alt, w = "w-52  h-52" }) => {
         <img
           className={`${w}`}
           src="/no-image.svg"
-          alt={alt}
+          alt="alt"
           width="206px"
           height="206px"
           loading="lazy"
