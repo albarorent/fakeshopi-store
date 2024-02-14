@@ -30,7 +30,7 @@ function Comparar() {
           </p>
         ) : (
           <div className="w-full flex items-center gap-3 border border-slate-300 rounded-md overflow-x-scroll">
-            <div className="flex flex-col items-center justify-center w-32 lg:w-[520px] h-full gap-3 border-r border-slate-300">
+            <div className="flex flex-col items-center justify-center w-32 sm:w-[520px] h-full gap-3 border-r border-slate-300">
               <div className="border-b border-slate-300 w-full pb-8 h-[218px] grid items-center justify-center">
                 <h1 className="text-center">Producto</h1>
               </div>
