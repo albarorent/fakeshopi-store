@@ -1,7 +1,7 @@
-import React, { lazy } from "react";
+import React, { Suspense, lazy } from "react";
 import { Link } from "react-router-dom";
 import { TbShoppingCart } from "react-icons/tb";
-const LazyImage = lazy(()=>import('../Components/LazyImage'));
+const LazyImage = lazy(() => import("../Components/LazyImage"));
 
 function Product({ id, title, img, categorie, price }) {
   const isValidImageUrl = (imageUrl) => {
@@ -23,23 +23,15 @@ function Product({ id, title, img, categorie, price }) {
         >
           {title.length > 10 ? `${title.slice(0, 20)}...` : title}
         </Link>
-        {isValidImageUrl(img) ? (
-          <Link to={`/productos/${id}`}>
+        <Link to={`/productos/${id}`}>
+          <Suspense fallback={<div>Cargando...</div>}>
             <LazyImage
               src={img}
               alt={title}
               w={"w-full sm:w-24 md:w-40 lg:w-52"}
             />
-          </Link>
-        ) : (
-          <Link to={`/productos/${id}`}>
-            <LazyImage
-              src={"/no-image.svg"}
-              alt={"No Image"}
-              w={"w-full sm:w-24 md:w-36 lg:w-52"}
-            />
-          </Link>
-        )}
+          </Suspense>
+        </Link>
         <div className="flex justify-between ">
           <Link
             to={`/productos/${id}`}

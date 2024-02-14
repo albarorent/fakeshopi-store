@@ -1,4 +1,4 @@
-import { lazy, useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getProduct } from "../api/products";
 import { useShopify } from "../context/ShopifyContext";
@@ -7,7 +7,7 @@ import { RiSubtractFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
 import { TbShoppingCart } from "react-icons/tb";
 import Catgorys from "./Catgorys";
-const LazyImage = lazy(()=>import('../Components/LazyImage'));
+const LazyImage = lazy(() => import("../Components/LazyImage"));
 import SweetAlert from "../lib/SweetAlert";
 import { uniqueIds } from "../helpers/Utils";
 import { TEAnimation } from "tw-elements-react";
@@ -100,11 +100,13 @@ function InfoProduct() {
             {products ? (
               <>
                 <div>
-                  <LazyImage
-                    src={products.images}
-                    w={"w-[350px]"}
-                    alt={products.title}
-                  />
+                  <Suspense fallback={<div>Cargando...</div>}>
+                    <LazyImage
+                      src={products.images}
+                      w={"w-[350px]"}
+                      alt={products.title}
+                    />
+                  </Suspense>
                 </div>
                 <div>
                   <div className="pb-3">

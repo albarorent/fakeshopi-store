@@ -1,8 +1,8 @@
-import { lazy, useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useShopify } from "../context/ShopifyContext";
 import { Link } from "react-router-dom";
-const LazyImage = lazy(()=>import('../Components/LazyImage'));
+const LazyImage = lazy(() => import("../Components/LazyImage"));
 
 function Catgorys() {
   const { categories, loading, getCat, setLoading } = useShopify();
@@ -63,11 +63,9 @@ function Catgorys() {
                   <div className="w-40">
                     <h1>{categoria.name}</h1>
                   </div>
-                  {isValidImageUrl(categoria.image) ? (
+                  <Suspense fallback={<div>Cargando...</div>}>
                     <LazyImage src={categoria.image} alt={categoria.name} />
-                  ) : (
-                    <LazyImage src={"/no-image.svg"} alt={"No Image"} />
-                  )}
+                  </Suspense>
                 </div>
               </Link>
             ))

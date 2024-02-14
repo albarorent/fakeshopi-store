@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { useShopify } from "../context/ShopifyContext";
-import { lazy, useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import Catgorys from "../Components/Catgorys";
 import { TbShoppingCart } from "react-icons/tb";
 import { getProduct } from "../api/products";
 import SweetAlert from "../lib/SweetAlert";
 import { uniqueIds } from "../helpers/Utils";
 import { TEAnimation } from "tw-elements-react";
-const LazyImage = lazy(()=>import('../Components/LazyImage'));
+const LazyImage = lazy(() => import("../Components/LazyImage"));
 
 function Home() {
   const { products, getProductos, loading, setLoading, setCar, setcantCar } =
@@ -100,11 +100,15 @@ function Home() {
               </div>
               {isValidImageUrl(product.images[0]) ? (
                 <Link to={`/productos/${product.id}`}>
-                  <LazyImage src={product.images[0]} alt={product.title} />
+                  <Suspense fallback={<div>Cargando...</div>}>
+                    <LazyImage src={product.images[0]} alt={product.title} />
+                  </Suspense>
                 </Link>
               ) : (
                 <Link to={`/productos/${product.id}`}>
-                  <LazyImage src="/no-image.svg" alt={product.title} />
+                  <Suspense fallback={<div>Cargando...</div>}>
+                    <LazyImage src="/no-image.svg" alt={product.title} />
+                  </Suspense>
                 </Link>
               )}
             </div>

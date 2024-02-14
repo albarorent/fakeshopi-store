@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import SweetAlert from "../lib/SweetAlert";
 
 function Pago() {
-  const { idCount, subtotal, setcantCar, setCar, autenticated } = useShopify();
+  const { subtotal, setcantCar, setCar } = useShopify();
   const navigate = useNavigate();
   const {
     register,

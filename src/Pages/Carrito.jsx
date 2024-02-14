@@ -1,9 +1,9 @@
-import React, { lazy, useEffect } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import Catgorys from "../Components/Catgorys";
 import { useShopify } from "../context/ShopifyContext";
 import { RiSubtractFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
-const LazyImage = lazy(()=>import('../Components/LazyImage'));
+const LazyImage = lazy(() => import("../Components/LazyImage"));
 import SweetAlert from "../lib/SweetAlert";
 import { useNavigate } from "react-router-dom";
 import { uniqueIds } from "../helpers/Utils";
@@ -17,7 +17,7 @@ function Carrito() {
     setIdCount,
     subtotal,
     setSubtotal,
-    setAutenticated
+    setAutenticated,
   } = useShopify();
 
   const navigate = useNavigate();
@@ -40,7 +40,6 @@ function Carrito() {
 
     setIdCount(updatedIdCount);
   }, [setCar, setIdCount]);
-
 
   const sumClick = (productId) => {
     // Obtener el producto correspondiente al productId
@@ -148,11 +147,13 @@ function Carrito() {
                   className="w-full flex flex-col items-center sm:flex-row gap-3 border border-slate-300 p-4 rounded-md"
                 >
                   <div>
-                    <LazyImage
-                      src={cars.images[0]}
-                      alt={cars.title}
-                      w={"w-40"}
-                    />
+                    <Suspense fallback={<div>Cargando...</div>}>
+                      <LazyImage
+                        src={cars.images[0]}
+                        alt={cars.title}
+                        w={"w-40"}
+                      />
+                    </Suspense>
                   </div>
                   <div>
                     <div>
